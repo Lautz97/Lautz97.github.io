@@ -4,6 +4,6 @@
 
 # Stats
 
-<a><img src="https://github-readme-stats.vercel.app/api?username=Lautz97&show_icons=true&theme=gotham" alt="github stats" width="40%" /></a>
-<a><img src="https://github-readme-streak-stats.herokuapp.com/?user=Lautz97&theme=dark" width="40%"/></a>
-<a><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lautz97&langs_count=20&hide=makefile,hlsl,shaderlab,batchfile&layout=compact" width="30%"/></a>
+<a><img src="https://github-readme-stats.vercel.app/api?username=Lautz97&show_icons=true&theme=gotham" alt="github stats" width="60%" /></a>
+<a><img src="https://github-readme-streak-stats.herokuapp.com/?user=Lautz97&theme=dark" width="60%"/></a>
+<a><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lautz97&langs_count=20&hide=makefile,hlsl,shaderlab,batchfile&layout=compact" width="50%"/></a>
