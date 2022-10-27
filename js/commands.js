@@ -95,6 +95,7 @@ const commandsEnum = {
                         addLine("CLOSING...", "command margin", 80 * commands.length + 50);
                         setTimeout(() => {
                             window.close()
+                            addLine("Oh...wait...I cannot close windows that were not open by a script like me :(", "command margin", 80 * commands.length + 50);
                         }, 500)
                     }, 1000)
                 }, 1000)
