@@ -1,3 +1,5 @@
+const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png"/>`
+const sprintIcon = `<img src="https://img.icons8.com/fluency/25/null/sprint-iteration.png"/>`
 const commandsEnum = {
     help: {
         description: "You have just typed this. Have you already forget what it does?",
@@ -9,7 +11,7 @@ const commandsEnum = {
 
             Object.keys(commandsEnum).sort().forEach(k => {
                 if (eval(`commandsEnum.${k}.listable`)) {
-                    if (k.length >= 8) tab = "\t"
+                    if (k.length > 8) tab = "\t"
                     else if (k.length >= 4) tab = "\t\t"
                     else if (k.length >= 0) tab = "\t\t\t"
                     desc = eval(`commandsEnum.${k}.description`)
@@ -83,6 +85,21 @@ const commandsEnum = {
         },
         listable: true
     },
+    projects: {
+        description: "List of projects made fully or partially by Lautz97",
+        cmd: function () {
+            projectsText = [
+                ...commandsEnum.projects.textArray,
+                ...commandsEnum.tetriwall.textArray
+            ]
+            loopLines(projectsText, "", 90)
+        },
+        textArray: [
+            `<span class="color2">Projects actually in progress: </span>`
+        ],
+        listable: true
+    },
+
     exit: {
         description: "Close this website",
         cmd: function () {
@@ -106,8 +123,6 @@ const commandsEnum = {
 
 
 
-
-
     blank: {
         description: "blank",
         cmd: function () { console.log("do nothing"); },
@@ -119,5 +134,17 @@ const commandsEnum = {
             addLine("<span class=\"inherit\">Command not found. For a list of commands, ask for <span class=\"command\">'help'</span>.</span>", "error", 100);
         },
         listable: false
-    }
+    },
+    tetriwall: {
+        cmd: function () {
+            loopLines(commandsEnum.tetriwall.textArray, "", 90)
+        },
+        textArray: [
+            `<span class="colorlink">Tetriwall</span>`,
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`
+
+        ],
+        listable: false
+    },
 }

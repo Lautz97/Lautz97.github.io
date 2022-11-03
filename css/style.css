@@ -125,6 +125,10 @@ p {
     color: #B89076;
 }
 
+.colorlink {
+    color: #60db97;
+}
+
 .command {
     color: #73ABAD;
     text-shadow: 0 0 5px #73ABAD;
