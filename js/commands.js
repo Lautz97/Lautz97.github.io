@@ -34,21 +34,7 @@ const commandsEnum = {
         },
         listable: true
     },
-    whoislautz: {
-        description: "Informations about the author.",
-        cmd: function () {
-            loopLines([...commandsEnum.whoislautz.textArray, "<br>"], "", 80)
-        },
-        listable: true,
-        textArray: [
-            "<span>Lautz97, student of InfoTech Engineering.</span>",
-            "<span>Game developer.</span>",
-            "<span>At the moment working on: </span>",
-            ...commandsEnum.activeProjects.textArray,
-            "<span>If you want to support me: </span>",
-            ...commandsEnum.support.textArray
-        ]
-    },
+
 
     history: {
         description: "Show commands history",
@@ -196,5 +182,22 @@ const commandsEnum = {
             ...commandsEnum.guessIt.textArray,
         ],
         listable: false
+    },
+
+
+    whoislautz: {
+        description: "Informations about the author.",
+        cmd: function () {
+            loopLines([...commandsEnum.whoislautz.textArray, "<br>"], "", 80)
+        },
+        listable: true,
+        textArray: [
+            "<span>Lautz97, student of InfoTech Engineering.</span>",
+            "<span>Game developer.</span>",
+            "<span>At the moment working on: </span>",
+            ...commandsEnum.activeProjects.textArray,
+            "<span>If you want to support me: </span>",
+            ...commandsEnum.support.textArray
+        ]
     },
 }
