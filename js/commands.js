@@ -1,6 +1,19 @@
+const github = "https://github.com/Lautz97/";
 const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png"/>`
 const sprintIcon = `<img src="https://img.icons8.com/fluency/25/null/sprint-iteration.png"/>`
+
+const kofi = 'https://ko-fi.com/lautz97'
 const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png"/>`
+
+const linkedin = "https://www.linkedin.com/in/lautz97"
+const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png"/>'
+
+const instagram = "https://www.instagram.com/Lautz97/"
+const instagramIcon = '<img src="https://img.icons8.com/arcade/50/null/instagram-new.png"/>'
+
+const email = 'mailto:davide.lauterio@gmail.com'
+const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mail.png"/>'
+
 const commandsEnum = {
     help: {
         description: "You have just typed this. Have you already forget what it does?",
@@ -38,16 +51,24 @@ const commandsEnum = {
     whoislautz: {
         description: "Informations about the author.",
         cmd: function () {
-            loopLines([commandsEnum.whoislautz.textArray, "<br>"], "", 80)
+            loopLines([...commandsEnum.whoislautz.textArray(),], "", 80)
         },
         listable: true,
-        textArray: [
-            "<span>Lautz97, student of InfoTech Engineering.</span>",
-            "<span>Game developer.</span>",
-            "<span>At the moment working on: </span>",
-            commandsEnum.activeProjects.textArray,
+        textArray: () => [
+            "<br>",
+            "<span class='color2'>Davide <span class='command'>Lautz97</span> Lauterio</span>",
+            "<br>",
+            "<span class='color2'>Graduate in Engineering of Informations (bachelor's degree).</span>",
+            "<span class='color2'>Student of Computer and Systems Engineering (master's degree).</span>",
+            "<span class='color2'>Game developer.</span>",
+            "<br>",
+            "<span class='color2'>At the moment working on: </span>",
+            "<br>",
+            ...commandsEnum.activeProjects.textArray(),
             "<span>If you want to support me: </span>",
-            commandsEnum.support.textArray
+            ...commandsEnum.support.textArray(),
+            "<span>If I got you interested, you can contact me for more informations</span>",
+            ...commandsEnum.social.textArray(),
         ]
     },
 
@@ -76,6 +97,7 @@ const commandsEnum = {
         description: "Display website banner",
         cmd: function () {
             banner = [
+                "<br>",
                 //https://patorjk.com/software/taag/#p=display&f=3D-ASCII&t=Lautz
                 // '<span class="index">Lautz cmd explorer</span>',
                 '<span>   ___       ________  ___  ___  _________  ________                         </span>',
@@ -88,6 +110,7 @@ const commandsEnum = {
                 '<span>                                                                             </span>',
                 '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">'help'</span><span class=\"color2\">.</span>",
+                "<br>",
             ];
             loopLines(banner, "", 80);
 
@@ -108,12 +131,27 @@ const commandsEnum = {
                         setTimeout(() => {
                             window.close()
                             addLine("Oh...wait...I cannot close windows that were not open by a script like me :(", "command margin", 80 * commands.length + 50);
-                        }, 500)
-                    }, 1000)
-                }, 1000)
-            }, 1000)
+                        }, 250)
+                    }, 500)
+                }, 500)
+            }, 500)
         },
         listable: true
+    },
+
+    social: {
+        description: "Contact informations and social networks",
+        cmd: function () {
+            loopLines([...commandsEnum.social.textArray(), "<br>"], "", 90)
+        },
+        listable: true,
+        textArray: () => [
+            "<br>",
+            `<span class="color2 margin"><a href='${email}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email</a></span>`,
+            `<span class="color2 margin"><a href='${instagram}' target="_blank" rel="noopener noreferrer">${instagramIcon}Reach to me on Instagram</a></span>`,
+            `<span class="color2 margin"><a href='${linkedin}' target="_blank" rel="noopener noreferrer">${linkedinIcon}... or on LinkedIn</a></span>`,
+            "<br>",
+        ],
     },
 
     support: {
@@ -123,22 +161,24 @@ const commandsEnum = {
             window.open('https://ko-fi.com/lautz97', '_blank').focus()
         },
         listable: true,
-        textArray: [
+        textArray: () => [
+            "<br>",
             `<span class="colorlink">Offer me a coffe!</span>`,
             `<span class="color2 margin"><a href='https://ko-fi.com/lautz97' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
+            "<br>",
         ],
     },
 
     projects: {
         description: "List of projects made fully or partially by Lautz97",
         cmd: function () {
-            loopLines(commandsEnum.projects.textArray, "", 90)
+            loopLines([...commandsEnum.projects.textArray(), "<br>"], "", 90)
         },
-        textArray: [
+        textArray: () => [
             `<span class="color2">Projects actually in progress: </span>`,
-            commandsEnum.activeProjects.textArray,
+            ...commandsEnum.activeProjects.textArray(),
             `<span class="color2">Archived projects: </span>`,
-            commandsEnum.archivedProjects.textArray,
+            ...commandsEnum.archivedProjects.textArray(),
         ],
         listable: true
     },
@@ -157,25 +197,27 @@ const commandsEnum = {
     },
     tetriwall: {
         cmd: function () {
-            loopLines(commandsEnum.tetriwall.textArray, "", 90)
+            loopLines(...commandsEnum.tetriwall.textArray(), "", 90)
         },
-        textArray: [
+        textArray: () => [
+
             `<span class="colorlink">Tetriwall</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
-            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`
-
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`,
+            "<br>",
         ],
         listable: false
     },
 
     guessIt: {
         cmd: function () {
-            loopLines(commandsEnum.guessIt.textArray, "", 90)
+            loopLines(...commandsEnum.guessIt.textArray(), "", 90)
         },
-        textArray: [
+        textArray: () => [
             `<span class="colorlink">GuessIt: a mastermind replica for android</span>`,
             `<span class="colorlink">This was an old experiment.</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
+            "<br>",
         ],
         listable: false
     },
@@ -184,8 +226,8 @@ const commandsEnum = {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        textArray: [
-            commandsEnum.tetriwall.textArray,
+        textArray: () => [
+            ...commandsEnum.tetriwall.textArray(),
         ],
         listable: false
     },
@@ -194,8 +236,8 @@ const commandsEnum = {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        textArray: [
-            commandsEnum.guessIt.textArray,
+        textArray: () => [
+            ...commandsEnum.guessIt.textArray(),
         ],
         listable: false
     },
