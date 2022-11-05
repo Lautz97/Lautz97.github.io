@@ -25,7 +25,7 @@ command.innerHTML = textarea.value;
 function enterKey(e) {
     // console.log(e.keyCode);
     if (e.keyCode == 27) {
-        commandsEnum.clear.cmd()
+        document.location.reload(true);
     }
     if (pw) {
         let et = "*";
