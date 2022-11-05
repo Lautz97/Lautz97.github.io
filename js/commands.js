@@ -79,19 +79,6 @@ const commandsEnum = {
         },
         listable: true
     },
-    projects: {
-        description: "List of projects made fully or partially by Lautz97",
-        cmd: function () {
-            loopLines(commandsEnum.projects.textArray, "", 90)
-        },
-        textArray: [
-            `<span class="color2">Projects actually in progress: </span>`,
-            ...commandsEnum.activeProjects.textArray,
-            `<span class="color2">Archived projects: </span>`,
-            ...commandsEnum.archivedProjects.textArray,
-        ],
-        listable: true
-    },
 
     exit: {
         description: "Close this website",
@@ -184,6 +171,19 @@ const commandsEnum = {
         listable: false
     },
 
+    projects: {
+        description: "List of projects made fully or partially by Lautz97",
+        cmd: function () {
+            loopLines(commandsEnum.projects.textArray, "", 90)
+        },
+        textArray: [
+            `<span class="color2">Projects actually in progress: </span>`,
+            ...commandsEnum.activeProjects.textArray,
+            `<span class="color2">Archived projects: </span>`,
+            ...commandsEnum.archivedProjects.textArray,
+        ],
+        listable: true
+    },
 
     whoislautz: {
         description: "Informations about the author.",
