@@ -35,6 +35,21 @@ const commandsEnum = {
         listable: true
     },
 
+    whoislautz: {
+        description: "Informations about the author.",
+        cmd: function () {
+            loopLines([commandsEnum.whoislautz.textArray, "<br>"], "", 80)
+        },
+        listable: true,
+        textArray: [
+            "<span>Lautz97, student of InfoTech Engineering.</span>",
+            "<span>Game developer.</span>",
+            "<span>At the moment working on: </span>",
+            commandsEnum.activeProjects.textArray,
+            "<span>If you want to support me: </span>",
+            commandsEnum.support.textArray
+        ]
+    },
 
     history: {
         description: "Show commands history",
@@ -114,6 +129,20 @@ const commandsEnum = {
         ],
     },
 
+    projects: {
+        description: "List of projects made fully or partially by Lautz97",
+        cmd: function () {
+            loopLines(commandsEnum.projects.textArray, "", 90)
+        },
+        textArray: [
+            `<span class="color2">Projects actually in progress: </span>`,
+            commandsEnum.activeProjects.textArray,
+            `<span class="color2">Archived projects: </span>`,
+            commandsEnum.archivedProjects.textArray,
+        ],
+        listable: true
+    },
+
     blank: {
         description: "blank",
         cmd: function () { console.log("do nothing"); },
@@ -156,7 +185,7 @@ const commandsEnum = {
             commandsEnum.error.cmd()
         },
         textArray: [
-            ...commandsEnum.tetriwall.textArray,
+            commandsEnum.tetriwall.textArray,
         ],
         listable: false
     },
@@ -166,38 +195,8 @@ const commandsEnum = {
             commandsEnum.error.cmd()
         },
         textArray: [
-            ...commandsEnum.guessIt.textArray,
+            commandsEnum.guessIt.textArray,
         ],
         listable: false
-    },
-
-    projects: {
-        description: "List of projects made fully or partially by Lautz97",
-        cmd: function () {
-            loopLines(commandsEnum.projects.textArray, "", 90)
-        },
-        textArray: [
-            `<span class="color2">Projects actually in progress: </span>`,
-            ...commandsEnum.activeProjects.textArray,
-            `<span class="color2">Archived projects: </span>`,
-            ...commandsEnum.archivedProjects.textArray,
-        ],
-        listable: true
-    },
-
-    whoislautz: {
-        description: "Informations about the author.",
-        cmd: function () {
-            loopLines([...commandsEnum.whoislautz.textArray, "<br>"], "", 80)
-        },
-        listable: true,
-        textArray: [
-            "<span>Lautz97, student of InfoTech Engineering.</span>",
-            "<span>Game developer.</span>",
-            "<span>At the moment working on: </span>",
-            ...commandsEnum.activeProjects.textArray,
-            "<span>If you want to support me: </span>",
-            ...commandsEnum.support.textArray
-        ]
     },
 }
