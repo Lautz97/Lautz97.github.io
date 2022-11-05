@@ -37,10 +37,17 @@ const commandsEnum = {
     whoislautz: {
         description: "Informations about the author.",
         cmd: function () {
-            addLine("<span>Lautz97, student of InfoTech Engineering.</span>", "color2 margin", 90);
-            addLine("<span>Game developer.</span>", "color2 margin", 90);
+            loopLines([...commandsEnum.whoislautz.textArray, "<br>"], "", 80)
         },
-        listable: true
+        listable: true,
+        textArray: [
+            "<span>Lautz97, student of InfoTech Engineering.</span>",
+            "<span>Game developer.</span>",
+            "<span>At the moment working on: </span>",
+            ...commandsEnum.activeProjects.textArray,
+            "<span>If you want to support me: </span>",
+            ...commandsEnum.support.textArray
+        ]
     },
 
     history: {
@@ -89,14 +96,13 @@ const commandsEnum = {
     projects: {
         description: "List of projects made fully or partially by Lautz97",
         cmd: function () {
-            projectsText = [
-                ...commandsEnum.projects.textArray,
-                ...commandsEnum.tetriwall.textArray
-            ]
-            loopLines(projectsText, "", 90)
+            loopLines(commandsEnum.projects.textArray, "", 90)
         },
         textArray: [
-            `<span class="color2">Projects actually in progress: </span>`
+            `<span class="color2">Projects actually in progress: </span>`,
+            ...commandsEnum.activeProjects.textArray,
+            `<span class="color2">Archived projects: </span>`,
+            ...commandsEnum.archivedProjects.textArray,
         ],
         listable: true
     },
@@ -104,13 +110,13 @@ const commandsEnum = {
     exit: {
         description: "Close this website",
         cmd: function () {
-            addLine("3...", "command margin", 80 * commands.length + 50);
+            addLine("3...", "command margin", 80);
             setTimeout(() => {
-                addLine("2...", "command margin", 80 * commands.length + 50);
+                addLine("2...", "command margin", 80);
                 setTimeout(() => {
-                    addLine("1...", "command margin", 80 * commands.length + 50);
+                    addLine("1...", "command margin", 80);
                     setTimeout(() => {
-                        addLine("CLOSING...", "command margin", 80 * commands.length + 50);
+                        addLine("CLOSING...", "command margin", 80);
                         setTimeout(() => {
                             window.close()
                             addLine("Oh...wait...I cannot close windows that were not open by a script like me :(", "command margin", 80 * commands.length + 50);
@@ -124,7 +130,10 @@ const commandsEnum = {
 
     support: {
         description: "Offer me a coffe!",
-        cmd: function () { window.open('https://ko-fi.com/lautz97', '_blank').focus() },
+        cmd: function () {
+            addLine("Opening ko-fi <3 Thanks bud!", "color2 margin", 80);
+            window.open('https://ko-fi.com/lautz97', '_blank').focus()
+        },
         listable: true,
         textArray: [
             `<span class="colorlink">Offer me a coffe!</span>`,
@@ -153,6 +162,38 @@ const commandsEnum = {
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`
 
+        ],
+        listable: false
+    },
+
+    guessIt: {
+        cmd: function () {
+            loopLines(commandsEnum.guessIt.textArray, "", 90)
+        },
+        textArray: [
+            `<span class="colorlink">GuessIt: a mastermind replica for android</span>`,
+            `<span class="colorlink">This was an old experiment.</span>`,
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
+        ],
+        listable: false
+    },
+
+    activeProjects: {
+        cmd: function () {
+            commandsEnum.error.cmd()
+        },
+        textArray: [
+            ...commandsEnum.tetriwall.textArray,
+        ],
+        listable: false
+    },
+
+    archivedProjects: {
+        cmd: function () {
+            commandsEnum.error.cmd()
+        },
+        textArray: [
+            ...commandsEnum.guessIt.textArray,
         ],
         listable: false
     },
