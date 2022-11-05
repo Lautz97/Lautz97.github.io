@@ -1,5 +1,6 @@
 const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png"/>`
 const sprintIcon = `<img src="https://img.icons8.com/fluency/25/null/sprint-iteration.png"/>`
+const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png"/>`
 const commandsEnum = {
     help: {
         description: "You have just typed this. Have you already forget what it does?",
@@ -121,7 +122,15 @@ const commandsEnum = {
         listable: true
     },
 
-
+    support: {
+        description: "Offer me a coffe!",
+        cmd: function () { window.open('https://ko-fi.com/lautz97', '_blank').focus() },
+        listable: true,
+        textArray: [
+            `<span class="colorlink">Offer me a coffe!</span>`,
+            `<span class="color2 margin"><a href='https://ko-fi.com/lautz97' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
+        ],
+    },
 
     blank: {
         description: "blank",
