@@ -197,7 +197,7 @@ const commandsEnum = {
     },
     tetriwall: {
         cmd: function () {
-            loopLines(...commandsEnum.tetriwall.textArray(), "", 90)
+            loopLines([...commandsEnum.tetriwall.textArray()], "", 90)
         },
         textArray: () => [
 
@@ -211,7 +211,7 @@ const commandsEnum = {
 
     guessIt: {
         cmd: function () {
-            loopLines(...commandsEnum.guessIt.textArray(), "", 90)
+            loopLines([...commandsEnum.guessIt.textArray()], "", 90)
         },
         textArray: () => [
             `<span class="colorlink">GuessIt: a mastermind replica for android</span>`,
@@ -227,7 +227,7 @@ const commandsEnum = {
             commandsEnum.error.cmd()
         },
         textArray: () => [
-            ...commandsEnum.tetriwall.textArray(),
+            [...commandsEnum.tetriwall.textArray()],
         ],
         listable: false
     },
@@ -237,7 +237,7 @@ const commandsEnum = {
             commandsEnum.error.cmd()
         },
         textArray: () => [
-            ...commandsEnum.guessIt.textArray(),
+            [...commandsEnum.guessIt.textArray()],
         ],
         listable: false
     },
