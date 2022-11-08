@@ -64,7 +64,7 @@ const commandsEnum = {
             "<br>",
             "<span class='color2'>At the moment working on: </span>",
             "<br>",
-            ...commandsEnum.activeProjects.textArray(),
+            ...commandsEnum.activeprojects.textArray(),
             "<span>If you want to support me: </span>",
             ...commandsEnum.support.textArray(),
             "<span>If I got you interested, you can contact me for more informations</span>",
@@ -176,9 +176,9 @@ const commandsEnum = {
         },
         textArray: () => [
             `<span class="color2">Projects actually in progress: </span>`,
-            ...commandsEnum.activeProjects.textArray(),
+            ...commandsEnum.activeprojects.textArray(),
             `<span class="color2">Archived projects: </span>`,
-            ...commandsEnum.archivedProjects.textArray(),
+            ...commandsEnum.archivedprojects.textArray(),
         ],
         listable: true
     },
@@ -195,12 +195,12 @@ const commandsEnum = {
         },
         listable: false
     },
+
     tetriwall: {
         cmd: function () {
             loopLines([...commandsEnum.tetriwall.textArray()], "", 90)
         },
         textArray: () => [
-
             `<span class="colorlink">Tetriwall</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`,
@@ -209,12 +209,12 @@ const commandsEnum = {
         listable: false
     },
 
-    guessIt: {
+    guessit: {
         cmd: function () {
-            loopLines([...commandsEnum.guessIt.textArray()], "", 90)
+            loopLines([...commandsEnum.guessit.textArray()], "", 90)
         },
         textArray: () => [
-            `<span class="colorlink">GuessIt: a mastermind replica for android</span>`,
+            `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
             `<span class="colorlink">This was an old experiment.</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
             "<br>",
@@ -222,22 +222,22 @@ const commandsEnum = {
         listable: false
     },
 
-    activeProjects: {
+    activeprojects: {
         cmd: function () {
             commandsEnum.error.cmd()
         },
         textArray: () => [
-            [...commandsEnum.tetriwall.textArray()],
+            ...commandsEnum.tetriwall.textArray()
         ],
         listable: false
     },
 
-    archivedProjects: {
+    archivedprojects: {
         cmd: function () {
             commandsEnum.error.cmd()
         },
         textArray: () => [
-            [...commandsEnum.guessIt.textArray()],
+            ...commandsEnum.guessit.textArray(),
         ],
         listable: false
     },
