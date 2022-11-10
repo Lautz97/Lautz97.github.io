@@ -17,7 +17,7 @@ const telegramIcon = '<img src="https://img.icons8.com/color/50/null/telegram-ap
 const email = 'mailto:davide.lauterio@gmail.com'
 const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mail.png"/>'
 
-const keepInTouchForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
+const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
 
 const commandsEnum = {
@@ -148,16 +148,16 @@ const commandsEnum = {
     social: {
         description: "Contact informations and social networks",
         cmd: function () {
-            loopLines([...commandsEnum.social.textArray(), "<br>"], "", 90)
+            loopLines([...commandsEnum.social.textArray()], "", 90)
         },
         listable: true,
         textArray: () => [
             "<br>",
             `<span class="color2 margin"><a href='${email}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email</a></span>`,
             //`<span class="color2 margin"><a href='${instagram}' target="_blank" rel="noopener noreferrer">${instagramIcon}Reach to me on Instagram</a></span>`,
-            //telegram
-            //mailing list form
-            `<span class="color2 margin"><a href='${linkedin}' target="_blank" rel="noopener noreferrer">${linkedinIcon}... or on LinkedIn</a></span>`,
+            `<span class="color2 margin"><a href='${telegram}' target="_blank" rel="noopener noreferrer">${telegramIcon}Reach to me via Telegram</a></span>`,
+            `<span class="color2 margin"><a href='${mailingListForm}' target="_blank" rel="noopener noreferrer">${mailingListIcon}or send me your mail address to receive updates on my projects.</a></span>`,
+            `<span class="color2 margin"><a href='${linkedin}' target="_blank" rel="noopener noreferrer">${linkedinIcon}... or if you really want to, on LinkedIn</a></span>`,
             "<br>",
         ],
     },
