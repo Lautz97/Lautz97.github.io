@@ -11,8 +11,14 @@ const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.pn
 const instagram = "https://www.instagram.com/Lautz97/"
 const instagramIcon = '<img src="https://img.icons8.com/arcade/50/null/instagram-new.png"/>'
 
+const telegram = 'https://t.me/lautz97'
+const telegramIcon = '<img src="https://img.icons8.com/color/50/null/telegram-app--v1.png"/>'
+
 const email = 'mailto:davide.lauterio@gmail.com'
 const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mail.png"/>'
+
+const keepInTouchForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
+const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
 
 const commandsEnum = {
     help: {
@@ -148,7 +154,9 @@ const commandsEnum = {
         textArray: () => [
             "<br>",
             `<span class="color2 margin"><a href='${email}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email</a></span>`,
-            `<span class="color2 margin"><a href='${instagram}' target="_blank" rel="noopener noreferrer">${instagramIcon}Reach to me on Instagram</a></span>`,
+            //`<span class="color2 margin"><a href='${instagram}' target="_blank" rel="noopener noreferrer">${instagramIcon}Reach to me on Instagram</a></span>`,
+            //telegram
+            //mailing list form
             `<span class="color2 margin"><a href='${linkedin}' target="_blank" rel="noopener noreferrer">${linkedinIcon}... or on LinkedIn</a></span>`,
             "<br>",
         ],
