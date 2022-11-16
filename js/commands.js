@@ -1,3 +1,5 @@
+const markdownParser = import("./md/markdownParser.js");
+
 const github = "https://github.com/Lautz97/";
 const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png"/>`
 const sprintIcon = `<img src="https://img.icons8.com/fluency/25/null/sprint-iteration.png"/>`
@@ -219,7 +221,7 @@ const commandsEnum = {
 
     guessit: {
         cmd: function () {
-            loopLines([...commandsEnum.guessit.textArray()], "", 90)
+            addLine(bind(commandsEnum.guessit.text()), "", 180)
         },
         textArray: () => [
             `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
@@ -227,6 +229,11 @@ const commandsEnum = {
             `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
             "<br>",
         ],
+        text: () => `
+        #GuessIt is a mastermind replica for android. 
+        This was an old experiment.
+        [${githubIcon} Open on GitHub]('https://github.com/Lautz97/guessIt')
+        `,
         listable: false
     },
 
