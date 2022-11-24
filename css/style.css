@@ -134,6 +134,10 @@ p {
     text-shadow: 0 0 5px #73ABAD;
 }
 
+.creditsText {
+    font-size: 60%;
+}
+
 .error {
     color: #B89076;
 }
@@ -142,7 +146,7 @@ p {
     color: #fff;
 }
 
-.inherit,
+/* .inherit, */
 a {
     color: #9C8394;
 }

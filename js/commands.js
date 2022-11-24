@@ -29,15 +29,15 @@ const commandsEnum = {
             let message = []
             message.push("<br>")
 
-            let row = "", desc = "", tab = ""
+            let row = "", desc = ""
 
             Object.keys(commandsEnum).sort().forEach(k => {
                 if (eval(`commandsEnum.${k}.listable`)) {
-                    if (k.length > 8) tab = "\t"
-                    else if (k.length >= 4) tab = "\t\t"
-                    else if (k.length >= 0) tab = "\t\t\t"
+                    while (k.length < 18) {
+                        k += " "
+                    }
                     desc = eval(`commandsEnum.${k}.description`)
-                    row = `<span><pre style="display:inline"><span class="command">${k + tab}</span>${desc}</pre></span>`
+                    row = `<span><pre style="display:inline; font-size:125%"><span class="command">${k}</span>${desc}</pre></span>`
                     message.push(row)
                 }
             });
@@ -118,6 +118,7 @@ const commandsEnum = {
                 '<span>                                                                             </span>',
                 '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">'help'</span><span class=\"color2\">.</span>",
+                "<a href=\"https://icons8.it/\" class=\"creditsText colorLink\" >Icons by Icons8.</a>",
                 "<br>",
             ];
             loopLines(banner, "", 80);
@@ -221,7 +222,7 @@ const commandsEnum = {
 
     guessit: {
         cmd: function () {
-            addLine(bind(commandsEnum.guessit.text()), "", 180)
+            addLine(bind(commandsEnum.guessit.textMd()), "", 180)
         },
         textArray: () => [
             `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
@@ -229,10 +230,10 @@ const commandsEnum = {
             `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
             "<br>",
         ],
-        text: () => `
-        #GuessIt is a mastermind replica for android. 
-        This was an old experiment.
-        [${githubIcon} Open on GitHub]('https://github.com/Lautz97/guessIt')
+        textMd: () => `
+    #GuessIt is a mastermind replica for android. 
+    This was an old experiment.
+    [${githubIcon} Open on GitHub]('https://github.com/Lautz97/guessIt')
         `,
         listable: false
     },
