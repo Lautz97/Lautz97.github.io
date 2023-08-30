@@ -22,6 +22,9 @@ const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mai
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
 
+const leoDemo = 'https://lautz97.github.io/FEDCRV/'
+const leoIcon = '<img src="https://www.leonardo.com/o/leonardocompany-theme/images/LDO_Logo_Leonardo.svg" width="600" height="auto" />'
+
 const commandsEnum = {
     help: {
         description: "You have just typed this. Have you already forget what it does?",
@@ -97,6 +100,7 @@ const commandsEnum = {
                 terminal.innerHTML = '<a id="before"></a>';
                 before = document.getElementById("before");
             }, 1);
+            commandsEnum.banner.cmd();
         },
         listable: true
     },
@@ -117,7 +121,7 @@ const commandsEnum = {
                 '<span>      \\|_______|\\|__|\\|__|\\|_______|    \\|__|  \\|_______|              </span>',
                 '<span>                                                                             </span>',
                 '<span class="color2"></span>',
-                "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">'help'</span><span class=\"color2\">.</span>",
+                "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
                 "<a href=\"https://icons8.it/\" class=\"creditsText colorLink\" >Icons by Icons8.</a>",
                 "<br>",
             ];
@@ -202,9 +206,28 @@ const commandsEnum = {
     error: {
         description: "error",
         cmd: function () {
-            addLine("<span class=\"inherit\">Command not found. For a list of commands, ask for <span class=\"command\">'help'</span>.</span>", "error", 100);
+            addLine("<span class=\"inherit\">Command not found. For a list of commands, ask for <span class=\"command\">help</span>.</span>", "error", 100);
         },
         listable: false
+    },
+
+    lautz97: {
+        cmd: function () {
+            commandsEnum.whoislautz.cmd()
+        },
+        listable: false
+    },
+
+    leonardo: {
+        description: "Demo of Cyber Recovery Vault.",
+        cmd: function () {
+            loopLines([...commandsEnum.leonardo.textArray()], "", 90)
+        },
+        textArray: () => [
+            `<span class="colorlink">Leonardo</span>`,
+            `<span class="color2 margin"><a href='${leoDemo}' target="_blank" rel="noopener noreferrer">${leoIcon} Open Demo</a></span>`,
+        ],
+        listable: true
     },
 
     tetriwall: {
@@ -243,6 +266,7 @@ const commandsEnum = {
             commandsEnum.error.cmd()
         },
         textArray: () => [
+            ...commandsEnum.leonardo.textArray(),
             ...commandsEnum.tetriwall.textArray()
         ],
         listable: false

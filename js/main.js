@@ -50,12 +50,7 @@ function enterKey(e) {
         }
     } else {
         if (e.keyCode == 13) {
-            commands.push(command.innerHTML);
-            git = commands.length;
-            addLine(lineStart + command.innerHTML, "no-animation", 0);
-            commander(command.innerHTML.toLowerCase());
-            command.innerHTML = "";
-            textarea.value = "";
+            SendCommand();
         }
         if (e.keyCode == 38 && git != 0) {
             git -= 1;
@@ -72,6 +67,22 @@ function enterKey(e) {
             command.innerHTML = textarea.value;
         }
     }
+}
+
+function SendCommand() {
+    commands.push(command.innerHTML);
+    git = commands.length;
+    addLine(lineStart + command.innerHTML, "no-animation", 0);
+    commander(command.innerHTML.toLowerCase());
+    command.innerHTML = "";
+    textarea.value = "";
+}
+
+function clickCommand(cmd) {
+    textarea.value = cmd;
+    command.innerHTML = textarea.value;
+    SendCommand();
+    textarea.focus();
 }
 
 function commander(cmd) {

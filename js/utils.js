@@ -19,6 +19,13 @@ function addLine(text, style, time) {
         next.innerHTML = t;
         next.className = style;
 
+        // search in next for span.command
+        let span = next.querySelector("span.command");
+        // put in text the text content of span removing all the text after the first &nbsp;
+        if (span) {
+            span.addEventListener("click", () => clickCommand(span.innerHTML.split("&nbsp;")[0]));
+        }
+
         before.parentNode.insertBefore(next, before);
 
         window.scrollTo(0, document.body.offsetHeight);
