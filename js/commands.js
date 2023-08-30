@@ -124,6 +124,9 @@ const commandsEnum = {
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
                 "<a href=\"https://icons8.it/\" class=\"creditsText colorLink\" >Icons by Icons8.</a>",
                 "<br>",
+                "<br>",
+                "<br>",
+                ...commandsEnum.leonardo.textArray(),
             ];
             loopLines(banner, "", 80);
 
@@ -224,8 +227,9 @@ const commandsEnum = {
             loopLines([...commandsEnum.leonardo.textArray()], "", 90)
         },
         textArray: () => [
-            `<span class="colorlink">Leonardo</span>`,
-            `<span class="color2 margin"><a href='${leoDemo}' target="_blank" rel="noopener noreferrer">${leoIcon} Open Demo</a></span>`,
+            `<span class="colorlink">Cyber Recovery Vault GUI DEMO</span>`,
+            `<br>`,
+            `<span class="color2 margin"><a href='${leoDemo}' target="_self" rel="noopener noreferrer">${leoIcon} Open Demo</a></span>`,
         ],
         listable: true
     },
