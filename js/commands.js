@@ -23,7 +23,9 @@ const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
 
 const leoDemo = 'https://lautz97.github.io/FEDCRV/'
-const leoIcon = '<img src="https://www.leonardo.com/o/leonardocompany-theme/images/LDO_Logo_Leonardo.svg" width="600" height="auto" />'
+// const leoIcon = '<img src="https://www.leonardo.com/o/leonardocompany-theme/images/LDO_Logo_Leonardo.svg" width="600" height="auto" />'
+const leoIcon = '<img width="100" height="100" src="https://img.icons8.com/dotty/100/project-management.png" alt="project-management" />'
+
 
 const commandsEnum = {
     help: {
