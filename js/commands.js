@@ -125,9 +125,12 @@ const commandsEnum = {
                 '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
                 "<a href=\"https://icons8.it/\" class=\"creditsText colorLink\" >Icons by Icons8.</a>",
+                "<br>",
+                "<br>",
+                ...commandsEnum.tetriwallislive.textArray(),
+                "<br/>",
             ];
             loopLines(banner, "", 80);
-
         },
         listable: true
     },
@@ -193,8 +196,13 @@ const commandsEnum = {
         textArray: () => [
             `<span class="color2">Projects actually in progress: </span>`,
             ...commandsEnum.activeprojects.textArray(),
+            "<br/>",
+            `<span class="color2">Completed or Stopped projects: </span>`,
+            ...commandsEnum.completedprojects.textArray(),
+            "<br/>",
             `<span class="color2">Archived projects: </span>`,
             ...commandsEnum.archivedprojects.textArray(),
+            "<br/>",
         ],
         listable: true
     },
@@ -232,6 +240,20 @@ const commandsEnum = {
     //     listable: true
     // },
 
+    tetriwallislive: {
+        description: "Tetriwall is now live!",
+        cmd: function () {
+            loopLines([...commandsEnum.tetriwallislive.textArray()], "", 90)
+        },
+        textArray: () => [
+            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorLink\" target=\"_blank\" >" +
+            "TETRIWALL IS NOW LIVE<br/>" +
+            "DOWNLOAD IT NOW IN GOOGLE PLAY STORE!"
+            + "</a> ",
+        ],
+        listable: false
+    },
+
     tetriwall: {
         cmd: function () {
             loopLines([...commandsEnum.tetriwall.textArray()], "", 90)
@@ -239,15 +261,14 @@ const commandsEnum = {
         textArray: () => [
             `<span class="colorlink">Tetriwall</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
-            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`,
-            "<br>",
-            `<span class="color2 margin"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
-            "<br>",
-            `<span class="color2 margin"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
-            "<br>",
+            // `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`,
+            ...commandsEnum.tetriwallislive.textArray(),
+            `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
+            `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
         ],
         listable: false
     },
+
 
     guessit: {
         cmd: function () {
@@ -257,7 +278,6 @@ const commandsEnum = {
             `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
             `<span class="colorlink">This was an old experiment.</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
-            "<br>",
         ],
         textMd: () => `
     #GuessIt is a mastermind replica for android. 
@@ -268,6 +288,17 @@ const commandsEnum = {
     },
 
     activeprojects: {
+        cmd: function () {
+            commandsEnum.error.cmd()
+        },
+        textArray: () => [
+            "something new is going to be here soon..."
+            // ...commandsEnum.tetriwall.textArray()
+        ],
+        listable: false
+    },
+
+    completedprojects: {
         cmd: function () {
             commandsEnum.error.cmd()
         },
