@@ -250,6 +250,12 @@ const commandsEnum = {
             "TETRIWALL IS NOW LIVE<br/>" +
             "DOWNLOAD IT NOW IN GOOGLE PLAY STORE!"
             + "</a> ",
+            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorLink\" target=\"_blank\" >" +
+            "<br/>" +
+            "OR DOWNLOAD IT FOR FREE ON ITCH.IO!"
+            + "</a> ",
+
+
         ],
         listable: false
     },
