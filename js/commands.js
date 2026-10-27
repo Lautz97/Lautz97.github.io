@@ -1,49 +1,37 @@
-const markdownParser = import("./md/markdownParser.js");
-
-const github = "https://github.com/Lautz97/";
-const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png"/>`
-const sprintIcon = `<img src="https://img.icons8.com/fluency/25/null/sprint-iteration.png"/>`
+const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png" alt=""/>`
 
 const kofi = 'https://ko-fi.com/lautz97'
-const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png"/>`
+const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png" alt="Ko-fi"/>`
 
 const linkedin = "https://www.linkedin.com/in/lautz97"
-const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png"/>'
-
-const instagram = "https://www.instagram.com/Lautz97/"
-const instagramIcon = '<img src="https://img.icons8.com/arcade/50/null/instagram-new.png"/>'
+const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png" alt=""/>'
 
 const telegram = 'https://t.me/lautz97'
-const telegramIcon = '<img src="https://img.icons8.com/color/50/null/telegram-app--v1.png"/>'
+const telegramIcon = '<img src="https://img.icons8.com/color/50/null/telegram-app--v1.png" alt=""/>'
 
 const email = 'mailto:davide.lauterio@gmail.com'
-const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mail.png"/>'
+const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mail.png" alt=""/>'
 
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
-const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
+const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png" alt=""/>'
 
-const leoDemo = 'https://lautz97.github.io/FEDCRV/'
-// const leoIcon = '<img src="https://www.leonardo.com/o/leonardocompany-theme/images/LDO_Logo_Leonardo.svg" width="600" height="auto" />'
-const leoIcon = '<img width="100" height="100" src="https://img.icons8.com/dotty/100/project-management.png" alt="project-management" />'
-
+// a titled block of lines, omitted entirely when there is nothing to list
+function section(title, lines) {
+    return lines.length ? [title, "<br>", ...lines, "<br>"] : []
+}
 
 const commandsEnum = {
     help: {
-        description: "You have just typed this. Have you already forget what it does?",
+        description: "You have just typed this. Have you already forgotten what it does?",
         cmd: function () {
             let message = []
             message.push("<br>")
 
-            let row = "", desc = ""
-
             Object.keys(commandsEnum).sort().forEach(k => {
-                if (eval(`commandsEnum.${k}.listable`)) {
-                    while (k.length < 18) {
-                        k += " "
-                    }
-                    desc = eval(`commandsEnum.${k}.description`)
-                    row = `<span><pre style="display:inline; font-size:125%"><span class="command">${k}</span>${desc}</pre></span>`
-                    message.push(row)
+                if (commandsEnum[k].listable) {
+                    let name = k.padEnd(12)
+                    let desc = commandsEnum[k].description
+                    message.push(`<span><pre class="help-row"><span class="command">${name}</span>${desc}</pre></span>`)
                 }
             });
 
@@ -54,15 +42,15 @@ const commandsEnum = {
     },
 
     whoami: {
-        description: "Informations about the guest.",
+        description: "Information about the guest.",
         cmd: function () {
-            addLine("<span>Nice philosofical question.</span>", "error margin", 2);
+            addLine("<span>Nice philosophical question.</span>", "error margin", 2);
         },
         listable: true
     },
 
     whoislautz: {
-        description: "Informations about the author.",
+        description: "Information about the author.",
         cmd: function () {
             loopLines([...commandsEnum.whoislautz.textArray(),], "", 80)
         },
@@ -71,16 +59,15 @@ const commandsEnum = {
             "<br>",
             "<span class='color2'>Davide <span class='command'>Lautz97</span> Lauterio</span>",
             "<br>",
-            "<span class='color2'>Graduate in Engineering of Informations (bachelor's degree).</span>",
-            "<span class='color2'>Student of Computer and Systems Engineering (master's degree).</span>",
+            "<span class='color2'>Bachelor's degree in Information Engineering.</span>",
+            "<span class='color2'>Master's degree in Computer and Systems Engineering.</span>",
+            "<span class='color2'>Currently working as a Security Engineer.</span>",
             "<span class='color2'>Game developer.</span>",
             "<br>",
-            "<span class='color2'>At the moment working on: </span>",
-            "<br>",
-            ...commandsEnum.activeprojects.textArray(),
+            ...section("<span class='color2'>At the moment working on: </span>", commandsEnum.activeprojects.textArray()),
             "<span>If you want to support me: </span>",
             ...commandsEnum.support.textArray(),
-            "<span>If I got you interested, you can contact me for more informations</span>",
+            "<span>If I got you interested, you can contact me for more information</span>",
             ...commandsEnum.social.textArray(),
         ]
     },
@@ -110,21 +97,20 @@ const commandsEnum = {
     banner: {
         description: "Display website banner",
         cmd: function () {
-            banner = [
+            let banner = [
                 "<br>",
                 //https://patorjk.com/software/taag/#p=display&f=3D-ASCII&t=Lautz
-                // '<span class="index">Lautz cmd explorer</span>',
-                '<span>   ___       ________  ___  ___  _________  ________                         </span>',
-                '<span>  |\\  \\     |\\   __  \\|\\  \\|\\  \\|\\___   ___\\\\_____  \\            </span>',
-                '<span>  \\ \\  \\    \\ \\  \\|\\  \\ \\  \\\\\\  \\|___ \\  \\_|\\|___/  /|       </span>',
-                '<span>   \\ \\  \\    \\ \\   __  \\ \\  \\\\\\  \\   \\ \\  \\     /  / /         </span>',
-                '<span>    \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\\\  \\   \\ \\  \\   /  /_/__      </span>',
-                '<span>     \\ \\_______\\ \\__\\ \\__\\ \\_______\\   \\ \\__\\ |\\________\\      </span>',
-                '<span>      \\|_______|\\|__|\\|__|\\|_______|    \\|__|  \\|_______|              </span>',
-                '<span>                                                                             </span>',
+                '<span class="ascii">   ___       ________  ___  ___  _________  ________                         </span>',
+                '<span class="ascii">  |\\  \\     |\\   __  \\|\\  \\|\\  \\|\\___   ___\\\\_____  \\            </span>',
+                '<span class="ascii">  \\ \\  \\    \\ \\  \\|\\  \\ \\  \\\\\\  \\|___ \\  \\_|\\|___/  /|       </span>',
+                '<span class="ascii">   \\ \\  \\    \\ \\   __  \\ \\  \\\\\\  \\   \\ \\  \\     /  / /         </span>',
+                '<span class="ascii">    \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\\\  \\   \\ \\  \\   /  /_/__      </span>',
+                '<span class="ascii">     \\ \\_______\\ \\__\\ \\__\\ \\_______\\   \\ \\__\\ |\\________\\      </span>',
+                '<span class="ascii">      \\|_______|\\|__|\\|__|\\|_______|    \\|__|  \\|_______|              </span>',
+                '<span class="ascii">                                                                             </span>',
                 '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
-                "<a href=\"https://icons8.it/\" class=\"creditsText colorLink\" >Icons by Icons8.</a>",
+                "<a href=\"https://icons8.it/\" class=\"creditsText colorlink\" >Icons by Icons8.</a>",
                 "<br>",
                 "<br>",
                 ...commandsEnum.tetriwallislive.textArray(),
@@ -147,7 +133,7 @@ const commandsEnum = {
                         addLine("CLOSING...", "command margin", 80);
                         setTimeout(() => {
                             window.close()
-                            addLine("Oh...wait...I cannot close windows that were not open by a script like me :(", "command margin", 80 * commands.length + 50);
+                            addLine("Oh...wait...I cannot close windows that were not open by a script like me :(", "command margin", 80);
                         }, 250)
                     }, 500)
                 }, 500)
@@ -157,7 +143,7 @@ const commandsEnum = {
     },
 
     social: {
-        description: "Contact informations and social networks",
+        description: "Contact information and social networks",
         cmd: function () {
             loopLines([...commandsEnum.social.textArray()], "", 90)
         },
@@ -165,8 +151,7 @@ const commandsEnum = {
         textArray: () => [
             "<br>",
             `<span class="color2 margin"><a href='${email}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email</a></span>`,
-            //`<span class="color2 margin"><a href='${instagram}' target="_blank" rel="noopener noreferrer">${instagramIcon}Reach to me on Instagram</a></span>`,
-            `<span class="color2 margin"><a href='${telegram}' target="_blank" rel="noopener noreferrer">${telegramIcon}Reach to me via Telegram</a></span>`,
+            `<span class="color2 margin"><a href='${telegram}' target="_blank" rel="noopener noreferrer">${telegramIcon}Reach me on Telegram</a></span>`,
             `<span class="color2 margin"><a href='${mailingListForm}' target="_blank" rel="noopener noreferrer">${mailingListIcon}or send me your mail address to receive updates on my projects.</a></span>`,
             `<span class="color2 margin"><a href='${linkedin}' target="_blank" rel="noopener noreferrer">${linkedinIcon}... or if you really want to, on LinkedIn</a></span>`,
             "<br>",
@@ -174,16 +159,16 @@ const commandsEnum = {
     },
 
     support: {
-        description: "Offer me a coffe!",
+        description: "Buy me a coffee!",
         cmd: function () {
-            addLine("Opening ko-fi <3 Thanks bud!", "color2 margin", 80);
-            window.open('https://ko-fi.com/lautz97', '_blank').focus()
+            addLine("Opening ko-fi &lt;3 Thanks bud!", "color2 margin", 80);
+            window.open(kofi, '_blank', 'noopener,noreferrer')
         },
         listable: true,
         textArray: () => [
             "<br>",
-            `<span class="colorlink">Offer me a coffe!</span>`,
-            `<span class="color2 margin"><a href='https://ko-fi.com/lautz97' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
+            `<span class="colorlink">Buy me a coffee!</span>`,
+            `<span class="color2 margin"><a href='${kofi}' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
             "<br>",
         ],
     },
@@ -194,24 +179,13 @@ const commandsEnum = {
             loopLines([...commandsEnum.projects.textArray(), "<br>"], "", 90)
         },
         textArray: () => [
-            `<span class="color2">Projects actually in progress: </span>`,
-            ...commandsEnum.activeprojects.textArray(),
-            "<br/>",
-            `<span class="color2">Completed or Stopped projects: </span>`,
-            ...commandsEnum.completedprojects.textArray(),
-            "<br/>",
-            `<span class="color2">Archived projects: </span>`,
-            ...commandsEnum.archivedprojects.textArray(),
-            "<br/>",
+            ...section(`<span class="color2">Projects currently in progress: </span>`, commandsEnum.activeprojects.textArray()),
+            ...section(`<span class="color2">Completed or paused projects: </span>`, commandsEnum.completedprojects.textArray()),
+            ...section(`<span class="color2">Archived projects: </span>`, commandsEnum.archivedprojects.textArray()),
         ],
         listable: true
     },
 
-    blank: {
-        description: "blank",
-        cmd: function () { console.log("do nothing"); },
-        listable: false
-    },
     error: {
         description: "error",
         cmd: function () {
@@ -227,30 +201,17 @@ const commandsEnum = {
         listable: false
     },
 
-    // leonardo: {
-    //     description: "Demo of Cyber Recovery Vault.",
-    //     cmd: function () {
-    //         loopLines([...commandsEnum.leonardo.textArray()], "", 90)
-    //     },
-    //     textArray: () => [
-    //         `<span class="colorlink">Cyber Recovery Vault GUI DEMO</span>`,
-    //         `<br>`,
-    //         `<span class="color2 margin"><a href='${leoDemo}' target="_self" rel="noopener noreferrer">${leoIcon} Open Demo</a></span>`,
-    //     ],
-    //     listable: true
-    // },
-
     tetriwallislive: {
         description: "Tetriwall is now live!",
         cmd: function () {
             loopLines([...commandsEnum.tetriwallislive.textArray()], "", 90)
         },
         textArray: () => [
-            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorLink\" target=\"_blank\" >" +
+            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorlink\" target=\"_blank\" rel=\"noopener noreferrer\">" +
             "TETRIWALL IS NOW LIVE<br/>" +
             "DOWNLOAD IT NOW IN GOOGLE PLAY STORE!"
             + "</a> ",
-            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorLink\" target=\"_blank\" >" +
+            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorlink\" target=\"_blank\" rel=\"noopener noreferrer\">" +
             "<br/>" +
             "OR DOWNLOAD IT FOR FREE ON ITCH.IO!"
             + "</a> ",
@@ -267,7 +228,6 @@ const commandsEnum = {
         textArray: () => [
             `<span class="colorlink">Tetriwall</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
-            // `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`,
             ...commandsEnum.tetriwallislive.textArray(),
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
@@ -278,18 +238,13 @@ const commandsEnum = {
 
     guessit: {
         cmd: function () {
-            addLine(bind(commandsEnum.guessit.textMd()), "", 180)
+            loopLines([...commandsEnum.guessit.textArray()], "", 90)
         },
         textArray: () => [
             `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
             `<span class="colorlink">This was an old experiment.</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
         ],
-        textMd: () => `
-    #GuessIt is a mastermind replica for android. 
-    This was an old experiment.
-    [${githubIcon} Open on GitHub]('https://github.com/Lautz97/guessIt')
-        `,
         listable: false
     },
 
@@ -297,10 +252,8 @@ const commandsEnum = {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        textArray: () => [
-            "something new is going to be here soon..."
-            // ...commandsEnum.tetriwall.textArray()
-        ],
+        // add the text of the projects in progress here; the section is hidden while empty
+        textArray: () => [],
         listable: false
     },
 

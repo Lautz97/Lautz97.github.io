@@ -1,7 +1,7 @@
-function newTab(link) {
-    setTimeout(function () {
-        window.open(link, "_blank");
-    }, 500);
+function escapeHtml(text) {
+    let div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
 }
 
 function addLine(text, style, time) {
@@ -19,11 +19,10 @@ function addLine(text, style, time) {
         next.innerHTML = t;
         next.className = style;
 
-        // search in next for span.command
+        // make the command name in the line clickable
         let span = next.querySelector("span.command");
-        // put in text the text content of span removing all the text after the first &nbsp;
         if (span) {
-            span.addEventListener("click", () => clickCommand(span.innerHTML.split("&nbsp;")[0]));
+            span.addEventListener("click", () => clickCommand(span.textContent.trim()));
         }
 
         before.parentNode.insertBefore(next, before);

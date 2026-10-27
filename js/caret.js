@@ -18,9 +18,7 @@ function typeCharacter(from, e) {
     e = e || window.event;
     var w = $("typer");
     var tw = from.value;
-    if (!pw) {
-        w.innerHTML = nl2br(tw);
-    }
+    w.textContent = nl2br(tw);
 }
 
 function moveCursor(count, e) {
@@ -31,8 +29,4 @@ function moveCursor(count, e) {
     } else if (keycode == 39 && (parseInt(cursor.style.left) + 10) <= 0) {
         cursor.style.left = parseInt(cursor.style.left) + 10 + "px";
     }
-}
-
-function alert(txt) {
-    console.log(txt);
 }
