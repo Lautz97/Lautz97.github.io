@@ -1,7 +1,7 @@
 const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png" alt=""/>`
 
 const kofi = 'https://ko-fi.com/lautz97'
-const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png" alt="Ko-fi"/>`
+const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png" alt=""/>`
 
 const linkedin = "https://www.linkedin.com/in/lautz97"
 const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png" alt=""/>'
@@ -14,6 +14,8 @@ const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mai
 
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png" alt=""/>'
+
+const itchIcon = '<img src="img/itchio.svg" alt=""/>'
 
 const protocolBreachItch = 'https://lautz97.itch.io/protocol-breach'
 const protocolBreachBeta = `${email}?subject=${encodeURIComponent("Protocol Breach closed beta")}`
@@ -74,9 +76,9 @@ const commandsEnum = {
             "<span class='color2'>Game developer.</span>",
             "<br>",
             ...section("<span class='color2'>At the moment working on: </span>", commandsEnum.activeprojects.textArray()),
-            "<span>If you want to support me: </span>",
+            "<span class='color2'>If you want to support me: </span>",
             ...commandsEnum.support.textArray(),
-            "<span>If I got you interested, you can contact me for more information</span>",
+            "<span class='color2'>If I got you interested, you can contact me for more information</span>",
             ...commandsEnum.social.textArray(),
         ]
     },
@@ -117,10 +119,8 @@ const commandsEnum = {
                 '<span class="ascii">     \\ \\_______\\ \\__\\ \\__\\ \\_______\\   \\ \\__\\ |\\________\\      </span>',
                 '<span class="ascii">      \\|_______|\\|__|\\|__|\\|_______|    \\|__|  \\|_______|              </span>',
                 '<span class="ascii">                                                                             </span>',
-                '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
                 "<a href=\"https://icons8.it/\" class=\"creditsText colorlink\" >Icons by Icons8.</a>",
-                "<br>",
                 "<br>",
                 ...commandsEnum.protocolbreachnews.textArray(),
                 "<br/>",
@@ -176,8 +176,7 @@ const commandsEnum = {
         listable: true,
         textArray: () => [
             "<br>",
-            `<span class="colorlink">Buy me a coffee!</span>`,
-            `<span class="color2 margin"><a href='${kofi}' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
+            `<span class="color2 margin"><a href='${kofi}' target="_blank" rel="noopener noreferrer">${kofiIcon}Buy me a coffee on Ko-fi</a></span>`,
             "<br>",
         ],
     },
@@ -185,7 +184,7 @@ const commandsEnum = {
     projects: {
         description: "List of projects made fully or partially by Lautz97",
         cmd: function () {
-            loopLines([...commandsEnum.projects.textArray(), "<br>"], "", 90)
+            loopLines([...commandsEnum.projects.textArray()], "", 90)
         },
         textArray: () => [
             ...section(`<span class="color2">Projects currently in progress: </span>`, commandsEnum.activeprojects.textArray()),
@@ -215,14 +214,9 @@ const commandsEnum = {
             loopLines([...commandsEnum.protocolbreachnews.textArray()], "", 90)
         },
         textArray: () => [
-            `<a href='${protocolBreachBeta}' class="command colorlink" target="_blank" rel="noopener noreferrer">` +
-            "PROTOCOL BREACH IS IN CLOSED BETA<br/>" +
-            "SEND ME AN EMAIL TO JOIN!" +
-            "</a>",
-            `<a href='${protocolBreachItch}' class="command colorlink" target="_blank" rel="noopener noreferrer">` +
-            "<br/>" +
-            "OR FOLLOW IT ON ITCH.IO!" +
-            "</a>",
+            `<span class="headline">PROTOCOL BREACH IS IN CLOSED BETA!</span>`,
+            `<span class="color2 margin"><a href='${protocolBreachBeta}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email to join</a></span>`,
+            `<span class="color2 margin"><a href='${protocolBreachItch}' target="_blank" rel="noopener noreferrer">${itchIcon}Follow it on itch.io</a></span>`,
             "<br>",
             `<span class="color2">Type </span><span class="command">protocolbreach</span><span class="color2"> to know more.</span>`,
         ],
@@ -236,8 +230,8 @@ const commandsEnum = {
         textArray: () => [
             `<span class="colorlink">Tetriwall</span>`,
             `<span class="color2 margin">Abandoned for lack of time: the last version is still available on itch.io.</span>`,
-            `<span class="color2 margin"><a href='https://lautz97.itch.io/tetriwall' target="_blank" rel="noopener noreferrer">Download it for free on itch.io</a></span>`,
-            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
+            `<span class="color2 margin"><a href='https://lautz97.itch.io/tetriwall' target="_blank" rel="noopener noreferrer">${itchIcon}Download it for free on itch.io</a></span>`,
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon}Open on GitHub</a></span>`,
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
         ],
@@ -250,9 +244,9 @@ const commandsEnum = {
             loopLines([...commandsEnum.guessit.textArray()], "", 90)
         },
         textArray: () => [
-            `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
-            `<span class="colorlink">This was an old experiment.</span>`,
-            `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
+            `<span class="colorlink">GuessIt</span>`,
+            `<span class="color2 margin">A Mastermind replica for Android, an old experiment.</span>`,
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon}Open on GitHub</a></span>`,
         ],
         listable: false
     },
@@ -273,7 +267,7 @@ const commandsEnum = {
             `<span class="margin"><span class="color2">Updated: </span>2026-10-24</span>`,
             "<br>",
             `<span class="color2 margin"><a href='${protocolBreachBeta}' target="_blank" rel="noopener noreferrer">${emailIcon}Want to join the closed beta? Send me an email</a></span>`,
-            `<span class="color2 margin"><a href='${protocolBreachItch}' target="_blank" rel="noopener noreferrer">Follow it on itch.io</a></span>`,
+            `<span class="color2 margin"><a href='${protocolBreachItch}' target="_blank" rel="noopener noreferrer">${itchIcon}Follow it on itch.io</a></span>`,
         ],
         listable: false
     },

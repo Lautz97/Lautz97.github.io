@@ -170,6 +170,20 @@ p {
     text-shadow: 0 0 5px #73ABAD;
 }
 
+/* icons sit on the text line, same size everywhere */
+#terminal img {
+    height: 1.4em;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+.headline {
+    color: #73ABAD;
+    text-shadow: 0 0 5px #73ABAD;
+    letter-spacing: 0.1em;
+}
+
 .creditsText {
     font-size: 60%;
 }
