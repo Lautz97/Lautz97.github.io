@@ -331,4 +331,72 @@ const commandsEnum = {
         ],
         listable: false
     },
+
+    // easter eggs: not listed in help and not completed with Tab
+
+    sudo: {
+        cmd: function () {
+            addLine("guest is not in the sudoers file. This incident will be reported.", "error margin", 80);
+        },
+        listable: false
+    },
+
+    ls: {
+        cmd: function () {
+            addLine("projects/  social/  secrets.txt", "color2 margin", 80);
+        },
+        listable: false
+    },
+
+    cat: {
+        cmd: function (args) {
+            let file = (args && args[0]) || ""
+            if (file === "secrets.txt") {
+                addLine("Nice try. The secrets are in the breach minigame.", "color2 margin", 80);
+            } else if (file === "") {
+                addLine("cat: missing file operand", "error margin", 80);
+            } else {
+                addLine(`cat: ${escapeHtml(file)}: No such file or directory`, "error margin", 80);
+            }
+        },
+        listable: false
+    },
+
+    pwd: {
+        cmd: function () {
+            addLine("/home/guest", "color2 margin", 80);
+        },
+        listable: false
+    },
+
+    rm: {
+        cmd: function () {
+            addLine("rm: permission denied. Nice try, though.", "error margin", 80);
+        },
+        listable: false
+    },
+
+    vim: {
+        cmd: function () {
+            addLine("You are now trapped in vim. Just kidding: press Esc to start over.", "color2 margin", 80);
+        },
+        listable: false
+    },
+
+    hack: {
+        cmd: function () {
+            loopLines([
+                "<span class='color2'>JACK_IN... connected to 10.0.0.1</span>",
+                `<span class='color2'>Breaching node corp-gw-01   </span>${progressBar(35, 12)}`,
+                `<span class='color2'>Breaching node corp-gw-01   </span>${progressBar(100, 12)}`,
+                "<span class='color2'>Pivot established. Moving ghost to fileserver-02...</span>",
+                "<span class='headline'>TRACE DETECTED. SECURITY LEVEL: LOCKDOWN</span>",
+                "<span class='color2'>JACK OUT. You got away, this time.</span>",
+                "<br>",
+                `<span class="color2">Want to do it for real? Type </span><span class="command">protocolbreach</span><span class="color2">.</span>`,
+                "<br>",
+            ], "margin", 400)
+        },
+        listable: false
+    },
 }
