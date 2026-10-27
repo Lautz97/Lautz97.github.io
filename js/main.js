@@ -65,9 +65,11 @@ function clickCommand(cmd) {
     textarea.focus();
 }
 
+// the first word picks the command, the rest is passed to it as arguments
 function commander(cmd) {
-    if (Object.prototype.hasOwnProperty.call(commandsEnum, cmd)) {
-        commandsEnum[cmd].cmd()
+    let [name, ...args] = cmd.split(/\s+/);
+    if (Object.prototype.hasOwnProperty.call(commandsEnum, name)) {
+        commandsEnum[name].cmd(args)
     } else {
         commandsEnum.error.cmd()
     }
