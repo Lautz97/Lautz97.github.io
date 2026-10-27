@@ -122,7 +122,7 @@ const commandsEnum = {
                 "<a href=\"https://icons8.it/\" class=\"creditsText colorlink\" >Icons by Icons8.</a>",
                 "<br>",
                 "<br>",
-                ...commandsEnum.tetriwallislive.textArray(),
+                ...commandsEnum.protocolbreachnews.textArray(),
                 "<br/>",
             ];
             loopLines(banner, "", 80);
@@ -210,22 +210,21 @@ const commandsEnum = {
         listable: false
     },
 
-    tetriwallislive: {
-        description: "Tetriwall is now live!",
+    protocolbreachnews: {
         cmd: function () {
-            loopLines([...commandsEnum.tetriwallislive.textArray()], "", 90)
+            loopLines([...commandsEnum.protocolbreachnews.textArray()], "", 90)
         },
         textArray: () => [
-            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorlink\" target=\"_blank\" rel=\"noopener noreferrer\">" +
-            "TETRIWALL IS NOW LIVE<br/>" +
-            "DOWNLOAD IT NOW IN GOOGLE PLAY STORE!"
-            + "</a> ",
-            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorlink\" target=\"_blank\" rel=\"noopener noreferrer\">" +
+            `<a href='${protocolBreachBeta}' class="command colorlink" target="_blank" rel="noopener noreferrer">` +
+            "PROTOCOL BREACH IS IN CLOSED BETA<br/>" +
+            "SEND ME AN EMAIL TO JOIN!" +
+            "</a>",
+            `<a href='${protocolBreachItch}' class="command colorlink" target="_blank" rel="noopener noreferrer">` +
             "<br/>" +
-            "OR DOWNLOAD IT FOR FREE ON ITCH.IO!"
-            + "</a> ",
-
-
+            "OR FOLLOW IT ON ITCH.IO!" +
+            "</a>",
+            "<br>",
+            `<span class="color2">Type </span><span class="command">protocolbreach</span><span class="color2"> to know more.</span>`,
         ],
         listable: false
     },
@@ -236,8 +235,9 @@ const commandsEnum = {
         },
         textArray: () => [
             `<span class="colorlink">Tetriwall</span>`,
+            `<span class="color2 margin">Abandoned for lack of time: the last version is still available on itch.io.</span>`,
+            `<span class="color2 margin"><a href='https://lautz97.itch.io/tetriwall' target="_blank" rel="noopener noreferrer">Download it for free on itch.io</a></span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
-            ...commandsEnum.tetriwallislive.textArray(),
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
         ],
@@ -265,7 +265,7 @@ const commandsEnum = {
         textArray: () => [
             "<br>",
             `<span class="colorlink">Protocol Breach</span>`,
-            `<span class="color2 margin">Real-time cyberpunk infiltration with tactical pause, roguelite.</span>`,
+            `<span class="color2 margin">Real-time cyberpunk infiltration roguelite.</span>`,
             `<span class="color2 margin">Jack into a corporate network, breach its nodes and complete the contract before the trace finds you.</span>`,
             "<br>",
             `<span class="margin"><span class="color2">Status:  </span>${progressBar(50)} in development, closed beta running</span>`,
@@ -293,9 +293,8 @@ const commandsEnum = {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        textArray: () => [
-            ...commandsEnum.tetriwall.textArray()
-        ],
+        // the section is hidden while empty
+        textArray: () => [],
         listable: false
     },
 
@@ -304,6 +303,8 @@ const commandsEnum = {
             commandsEnum.error.cmd()
         },
         textArray: () => [
+            ...commandsEnum.tetriwall.textArray(),
+            "<br>",
             ...commandsEnum.guessit.textArray(),
         ],
         listable: false
