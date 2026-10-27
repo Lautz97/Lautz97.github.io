@@ -18,7 +18,7 @@ function typeCharacter(from, e) {
     e = e || window.event;
     var w = $("typer");
     var tw = from.value;
-    w.innerHTML = nl2br(tw);
+    w.textContent = nl2br(tw);
 }
 
 function moveCursor(count, e) {

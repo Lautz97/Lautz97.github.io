@@ -1,3 +1,9 @@
+function escapeHtml(text) {
+    let div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function addLine(text, style, time) {
     var t = "";
     for (let i = 0; i < text.length; i++) {
@@ -13,11 +19,10 @@ function addLine(text, style, time) {
         next.innerHTML = t;
         next.className = style;
 
-        // search in next for span.command
+        // make the command name in the line clickable
         let span = next.querySelector("span.command");
-        // put in text the text content of span removing all the text after the first &nbsp;
         if (span) {
-            span.addEventListener("click", () => clickCommand(span.innerHTML.split("&nbsp;")[0]));
+            span.addEventListener("click", () => clickCommand(span.textContent.trim()));
         }
 
         before.parentNode.insertBefore(next, before);
