@@ -137,6 +137,10 @@ p {
         animation: none;
     }
 
+    .fetch-logo {
+        display: none;
+    }
+
     p:has(> .ascii) {
         font-size: calc((100vw - 32px) / 48);
     }
@@ -182,6 +186,32 @@ p {
     color: #73ABAD;
     text-shadow: 0 0 5px #73ABAD;
     letter-spacing: 0.1em;
+}
+
+/* whoislautz card */
+.fetch-logo {
+    white-space: pre;
+}
+
+.fetch-key {
+    display: inline-block;
+    width: 10ch;
+    color: #73ABAD;
+    font-weight: bold;
+}
+
+/* long values wrap under themselves, not under the key */
+.fetch-value {
+    display: inline-block;
+    max-width: calc(100% - 10ch);
+    vertical-align: top;
+}
+
+.swatch {
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    vertical-align: middle;
 }
 
 .creditsText {
