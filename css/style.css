@@ -73,10 +73,6 @@ b {
     content: "guest@lautz:~$ ";
 }
 
-#liner.password::before {
-    content: "Password:";
-}
-
 @keyframes show {
     from {
         opacity: 0;

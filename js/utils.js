@@ -1,9 +1,3 @@
-function newTab(link) {
-    setTimeout(function () {
-        window.open(link, "_blank");
-    }, 500);
-}
-
 function addLine(text, style, time) {
     var t = "";
     for (let i = 0; i < text.length; i++) {

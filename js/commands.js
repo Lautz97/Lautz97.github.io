@@ -1,17 +1,10 @@
-const markdownParser = import("./md/markdownParser.js");
-
-const github = "https://github.com/Lautz97/";
 const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png"/>`
-const sprintIcon = `<img src="https://img.icons8.com/fluency/25/null/sprint-iteration.png"/>`
 
 const kofi = 'https://ko-fi.com/lautz97'
 const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png"/>`
 
 const linkedin = "https://www.linkedin.com/in/lautz97"
 const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png"/>'
-
-const instagram = "https://www.instagram.com/Lautz97/"
-const instagramIcon = '<img src="https://img.icons8.com/arcade/50/null/instagram-new.png"/>'
 
 const telegram = 'https://t.me/lautz97'
 const telegramIcon = '<img src="https://img.icons8.com/color/50/null/telegram-app--v1.png"/>'
@@ -21,11 +14,6 @@ const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mai
 
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
-
-const leoDemo = 'https://lautz97.github.io/FEDCRV/'
-// const leoIcon = '<img src="https://www.leonardo.com/o/leonardocompany-theme/images/LDO_Logo_Leonardo.svg" width="600" height="auto" />'
-const leoIcon = '<img width="100" height="100" src="https://img.icons8.com/dotty/100/project-management.png" alt="project-management" />'
-
 
 const commandsEnum = {
     help: {
@@ -113,7 +101,6 @@ const commandsEnum = {
             banner = [
                 "<br>",
                 //https://patorjk.com/software/taag/#p=display&f=3D-ASCII&t=Lautz
-                // '<span class="index">Lautz cmd explorer</span>',
                 '<span>   ___       ________  ___  ___  _________  ________                         </span>',
                 '<span>  |\\  \\     |\\   __  \\|\\  \\|\\  \\|\\___   ___\\\\_____  \\            </span>',
                 '<span>  \\ \\  \\    \\ \\  \\|\\  \\ \\  \\\\\\  \\|___ \\  \\_|\\|___/  /|       </span>',
@@ -165,7 +152,6 @@ const commandsEnum = {
         textArray: () => [
             "<br>",
             `<span class="color2 margin"><a href='${email}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email</a></span>`,
-            //`<span class="color2 margin"><a href='${instagram}' target="_blank" rel="noopener noreferrer">${instagramIcon}Reach to me on Instagram</a></span>`,
             `<span class="color2 margin"><a href='${telegram}' target="_blank" rel="noopener noreferrer">${telegramIcon}Reach to me via Telegram</a></span>`,
             `<span class="color2 margin"><a href='${mailingListForm}' target="_blank" rel="noopener noreferrer">${mailingListIcon}or send me your mail address to receive updates on my projects.</a></span>`,
             `<span class="color2 margin"><a href='${linkedin}' target="_blank" rel="noopener noreferrer">${linkedinIcon}... or if you really want to, on LinkedIn</a></span>`,
@@ -227,19 +213,6 @@ const commandsEnum = {
         listable: false
     },
 
-    // leonardo: {
-    //     description: "Demo of Cyber Recovery Vault.",
-    //     cmd: function () {
-    //         loopLines([...commandsEnum.leonardo.textArray()], "", 90)
-    //     },
-    //     textArray: () => [
-    //         `<span class="colorlink">Cyber Recovery Vault GUI DEMO</span>`,
-    //         `<br>`,
-    //         `<span class="color2 margin"><a href='${leoDemo}' target="_self" rel="noopener noreferrer">${leoIcon} Open Demo</a></span>`,
-    //     ],
-    //     listable: true
-    // },
-
     tetriwallislive: {
         description: "Tetriwall is now live!",
         cmd: function () {
@@ -267,7 +240,6 @@ const commandsEnum = {
         textArray: () => [
             `<span class="colorlink">Tetriwall</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
-            // `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall/wiki' target="_blank" rel="noopener noreferrer">${sprintIcon} Read the wiki</a></span>`,
             ...commandsEnum.tetriwallislive.textArray(),
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
             `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
@@ -278,18 +250,13 @@ const commandsEnum = {
 
     guessit: {
         cmd: function () {
-            addLine(bind(commandsEnum.guessit.textMd()), "", 180)
+            loopLines([...commandsEnum.guessit.textArray()], "", 90)
         },
         textArray: () => [
             `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
             `<span class="colorlink">This was an old experiment.</span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
         ],
-        textMd: () => `
-    #GuessIt is a mastermind replica for android. 
-    This was an old experiment.
-    [${githubIcon} Open on GitHub]('https://github.com/Lautz97/guessIt')
-        `,
         listable: false
     },
 
@@ -299,7 +266,6 @@ const commandsEnum = {
         },
         textArray: () => [
             "something new is going to be here soon..."
-            // ...commandsEnum.tetriwall.textArray()
         ],
         listable: false
     },
