@@ -1,7 +1,7 @@
 const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png" alt=""/>`
 
 const kofi = 'https://ko-fi.com/lautz97'
-const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png" alt="Ko-fi"/>`
+const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png" alt=""/>`
 
 const linkedin = "https://www.linkedin.com/in/lautz97"
 const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png" alt=""/>'
@@ -14,6 +14,8 @@ const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mai
 
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png" alt=""/>'
+
+const itchIcon = '<img src="img/itchio.svg" alt=""/>'
 
 const protocolBreachItch = 'https://lautz97.itch.io/protocol-breach'
 const protocolBreachBeta = `${email}?subject=${encodeURIComponent("Protocol Breach closed beta")}`
@@ -45,6 +47,8 @@ const commandsEnum = {
             });
 
             message.push("<br>")
+            message.push(`<span class="creditsText">Tip: press Tab to autocomplete a command, arrows to browse the history.</span>`)
+            message.push("<br>")
             loopLines(message, "color2 margin", 80);
         },
         listable: true
@@ -64,19 +68,45 @@ const commandsEnum = {
             loopLines([...commandsEnum.whoislautz.textArray(),], "", 80)
         },
         listable: true,
+        // neofetch-style card: ASCII logo on the left, key/value pairs on the right
+        card: () => {
+            const logo = [
+                " .--------------. ",
+                " | .----------. | ",
+                " | | &gt;_       | | ",
+                " | | lautz97  | | ",
+                " | |          | | ",
+                " | '----------' | ",
+                " '-----.  .-----' ",
+                "   ____|__|____   ",
+                "  '------------'  ",
+            ]
+            const field = (key, value) => `<span class="fetch-key">${key}</span><span class="fetch-value color2">${value}</span>`
+            const projects = commandsEnum.activeprojects.names
+            const swatches = ["#519975", "#73ABAD", "#60db97", "#B89076", "#9C8394", "#DCDCCC"]
+                .map(c => `<span class="swatch" style="background:${c}"></span>`).join("")
+            const info = [
+                `<span class="headline">lautz97</span><span class="color2">@</span><span class="headline">github.io</span>`,
+                `<span class="color2">-----------------</span>`,
+                field("Name", "Davide Lauterio"),
+                field("Role", "Security Engineer"),
+                field("Also", "Game developer"),
+                field("Degree", "M.Sc. Computer and Systems Engineering"),
+                field("&nbsp;", "B.Sc. Information Engineering"),
+                projects.length
+                    ? `<span class="fetch-key">Project</span><span class="fetch-value">` + projects.map(n => `<span class="command">${n}</span>`).join(", ") + "</span>"
+                    : field("Project", "nothing public right now"),
+                swatches,
+            ]
+            return logo.map((line, i) => `<span class="fetch-logo">${line}  </span>${info[i] || ""}`)
+        },
         textArray: () => [
             "<br>",
-            "<span class='color2'>Davide <span class='command'>Lautz97</span> Lauterio</span>",
+            ...commandsEnum.whoislautz.card(),
             "<br>",
-            "<span class='color2'>Bachelor's degree in Information Engineering.</span>",
-            "<span class='color2'>Master's degree in Computer and Systems Engineering.</span>",
-            "<span class='color2'>Currently working as a Security Engineer.</span>",
-            "<span class='color2'>Game developer.</span>",
-            "<br>",
-            ...section("<span class='color2'>At the moment working on: </span>", commandsEnum.activeprojects.textArray()),
-            "<span>If you want to support me: </span>",
+            "<span class='color2'>If you want to support me: </span>",
             ...commandsEnum.support.textArray(),
-            "<span>If I got you interested, you can contact me for more information</span>",
+            "<span class='color2'>If I got you interested, you can contact me for more information</span>",
             ...commandsEnum.social.textArray(),
         ]
     },
@@ -117,10 +147,8 @@ const commandsEnum = {
                 '<span class="ascii">     \\ \\_______\\ \\__\\ \\__\\ \\_______\\   \\ \\__\\ |\\________\\      </span>',
                 '<span class="ascii">      \\|_______|\\|__|\\|__|\\|_______|    \\|__|  \\|_______|              </span>',
                 '<span class="ascii">                                                                             </span>',
-                '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
                 "<a href=\"https://icons8.it/\" class=\"creditsText colorlink\" >Icons by Icons8.</a>",
-                "<br>",
                 "<br>",
                 ...commandsEnum.protocolbreachnews.textArray(),
                 "<br/>",
@@ -176,8 +204,7 @@ const commandsEnum = {
         listable: true,
         textArray: () => [
             "<br>",
-            `<span class="colorlink">Buy me a coffee!</span>`,
-            `<span class="color2 margin"><a href='${kofi}' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
+            `<span class="color2 margin"><a href='${kofi}' target="_blank" rel="noopener noreferrer">${kofiIcon}Buy me a coffee on Ko-fi</a></span>`,
             "<br>",
         ],
     },
@@ -185,7 +212,7 @@ const commandsEnum = {
     projects: {
         description: "List of projects made fully or partially by Lautz97",
         cmd: function () {
-            loopLines([...commandsEnum.projects.textArray(), "<br>"], "", 90)
+            loopLines([...commandsEnum.projects.textArray()], "", 90)
         },
         textArray: () => [
             ...section(`<span class="color2">Projects currently in progress: </span>`, commandsEnum.activeprojects.textArray()),
@@ -215,14 +242,9 @@ const commandsEnum = {
             loopLines([...commandsEnum.protocolbreachnews.textArray()], "", 90)
         },
         textArray: () => [
-            `<a href='${protocolBreachBeta}' class="command colorlink" target="_blank" rel="noopener noreferrer">` +
-            "PROTOCOL BREACH IS IN CLOSED BETA<br/>" +
-            "SEND ME AN EMAIL TO JOIN!" +
-            "</a>",
-            `<a href='${protocolBreachItch}' class="command colorlink" target="_blank" rel="noopener noreferrer">` +
-            "<br/>" +
-            "OR FOLLOW IT ON ITCH.IO!" +
-            "</a>",
+            `<span class="headline">PROTOCOL BREACH IS IN CLOSED BETA!</span>`,
+            `<span class="color2 margin"><a href='${protocolBreachBeta}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email to join</a></span>`,
+            `<span class="color2 margin"><a href='${protocolBreachItch}' target="_blank" rel="noopener noreferrer">${itchIcon}Follow it on itch.io</a></span>`,
             "<br>",
             `<span class="color2">Type </span><span class="command">protocolbreach</span><span class="color2"> to know more.</span>`,
         ],
@@ -230,34 +252,35 @@ const commandsEnum = {
     },
 
     tetriwall: {
+        completable: true,
         cmd: function () {
             loopLines([...commandsEnum.tetriwall.textArray()], "", 90)
         },
         textArray: () => [
             `<span class="colorlink">Tetriwall</span>`,
             `<span class="color2 margin">Abandoned for lack of time: the last version is still available on itch.io.</span>`,
-            `<span class="color2 margin"><a href='https://lautz97.itch.io/tetriwall' target="_blank" rel="noopener noreferrer">Download it for free on itch.io</a></span>`,
-            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
-            `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
-            `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
+            `<span class="color2 margin"><a href='https://lautz97.itch.io/tetriwall' target="_blank" rel="noopener noreferrer">${itchIcon}Download it for free on itch.io</a></span>`,
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon}Open on GitHub</a></span>`,
         ],
         listable: false
     },
 
 
     guessit: {
+        completable: true,
         cmd: function () {
             loopLines([...commandsEnum.guessit.textArray()], "", 90)
         },
         textArray: () => [
-            `<span class="colorlink">GuessIt is a mastermind replica for android</span>`,
-            `<span class="colorlink">This was an old experiment.</span>`,
-            `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon} Open on GitHub</a></span>`,
+            `<span class="colorlink">GuessIt</span>`,
+            `<span class="color2 margin">A Mastermind replica for Android, an old experiment.</span>`,
+            `<span class="color2 margin"><a href='https://github.com/Lautz97/guessIt' target="_blank" rel="noopener noreferrer">${githubIcon}Open on GitHub</a></span>`,
         ],
         listable: false
     },
 
     protocolbreach: {
+        completable: true,
         cmd: function () {
             loopLines([...commandsEnum.protocolbreach.textArray(), "<br>"], "", 90)
         },
@@ -273,7 +296,7 @@ const commandsEnum = {
             `<span class="margin"><span class="color2">Updated: </span>2026-10-24</span>`,
             "<br>",
             `<span class="color2 margin"><a href='${protocolBreachBeta}' target="_blank" rel="noopener noreferrer">${emailIcon}Want to join the closed beta? Send me an email</a></span>`,
-            `<span class="color2 margin"><a href='${protocolBreachItch}' target="_blank" rel="noopener noreferrer">Follow it on itch.io</a></span>`,
+            `<span class="color2 margin"><a href='${protocolBreachItch}' target="_blank" rel="noopener noreferrer">${itchIcon}Follow it on itch.io</a></span>`,
         ],
         listable: false
     },
@@ -282,10 +305,9 @@ const commandsEnum = {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        // one clickable summary per project in progress; the section is hidden while empty
-        textArray: () => [
-            commandsEnum.protocolbreach.summary,
-        ],
+        // commands of the projects in progress; the section is hidden while empty
+        names: ["protocolbreach"],
+        textArray: () => commandsEnum.activeprojects.names.map(n => commandsEnum[n].summary),
         listable: false
     },
 
@@ -307,6 +329,74 @@ const commandsEnum = {
             "<br>",
             ...commandsEnum.guessit.textArray(),
         ],
+        listable: false
+    },
+
+    // easter eggs: not listed in help and not completed with Tab
+
+    sudo: {
+        cmd: function () {
+            addLine("guest is not in the sudoers file. This incident will be reported.", "error margin", 80);
+        },
+        listable: false
+    },
+
+    ls: {
+        cmd: function () {
+            addLine("projects/  social/  secrets.txt", "color2 margin", 80);
+        },
+        listable: false
+    },
+
+    cat: {
+        cmd: function (args) {
+            let file = (args && args[0]) || ""
+            if (file === "secrets.txt") {
+                addLine("Nice try. The secrets are in the breach minigame.", "color2 margin", 80);
+            } else if (file === "") {
+                addLine("cat: missing file operand", "error margin", 80);
+            } else {
+                addLine(`cat: ${escapeHtml(file)}: No such file or directory`, "error margin", 80);
+            }
+        },
+        listable: false
+    },
+
+    pwd: {
+        cmd: function () {
+            addLine("/home/guest", "color2 margin", 80);
+        },
+        listable: false
+    },
+
+    rm: {
+        cmd: function () {
+            addLine("rm: permission denied. Nice try, though.", "error margin", 80);
+        },
+        listable: false
+    },
+
+    vim: {
+        cmd: function () {
+            addLine("You are now trapped in vim. Just kidding: press Esc to start over.", "color2 margin", 80);
+        },
+        listable: false
+    },
+
+    hack: {
+        cmd: function () {
+            loopLines([
+                "<span class='color2'>JACK_IN... connected to 10.0.0.1</span>",
+                `<span class='color2'>Breaching node corp-gw-01   </span>${progressBar(35, 12)}`,
+                `<span class='color2'>Breaching node corp-gw-01   </span>${progressBar(100, 12)}`,
+                "<span class='color2'>Pivot established. Moving ghost to fileserver-02...</span>",
+                "<span class='headline'>TRACE DETECTED. SECURITY LEVEL: LOCKDOWN</span>",
+                "<span class='color2'>JACK OUT. You got away, this time.</span>",
+                "<br>",
+                `<span class="color2">Want to do it for real? Type </span><span class="command">protocolbreach</span><span class="color2">.</span>`,
+                "<br>",
+            ], "margin", 400)
+        },
         listable: false
     },
 }

@@ -15,6 +15,12 @@ setTimeout(function () {
 }, 100);
 
 window.addEventListener("keyup", enterKey);
+textarea.addEventListener("keydown", function (e) {
+    if (e.key === "Tab") {
+        e.preventDefault();
+        autocomplete();
+    }
+});
 
 //init
 setInput("");
@@ -59,10 +65,38 @@ function clickCommand(cmd) {
     textarea.focus();
 }
 
+// the first word picks the command, the rest is passed to it as arguments
 function commander(cmd) {
-    if (Object.prototype.hasOwnProperty.call(commandsEnum, cmd)) {
-        commandsEnum[cmd].cmd()
+    let [name, ...args] = cmd.split(/\s+/);
+    if (Object.prototype.hasOwnProperty.call(commandsEnum, name)) {
+        commandsEnum[name].cmd(args)
     } else {
         commandsEnum.error.cmd()
+    }
+}
+
+// Tab: complete a unique command, extend to the common prefix, or list the candidates
+function autocomplete() {
+    let input = nl2br(textarea.value).trim().toLowerCase();
+    if (input === "") {
+        return;
+    }
+    let matches = Object.keys(commandsEnum)
+        .filter(k => commandsEnum[k].listable || commandsEnum[k].completable)
+        .filter(k => k.startsWith(input))
+        .sort();
+    if (matches.length === 0) {
+        return;
+    }
+    let prefix = matches.reduce((a, b) => {
+        let i = 0;
+        while (i < a.length && a[i] === b[i]) i++;
+        return a.slice(0, i);
+    });
+    if (prefix.length > input.length) {
+        setInput(prefix);
+    } else if (matches.length > 1) {
+        addLine(lineStart + escapeHtml(input), "no-animation", 0);
+        addLine(matches.join("  "), "command margin", 0);
     }
 }

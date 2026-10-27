@@ -18,9 +18,12 @@ python3 -m http.server
 | `js/main.js` | Input handling, history and command dispatch |
 | `js/utils.js` | Helpers that print lines to the terminal |
 | `js/caret.js` | Mirrors the hidden textarea into the visible prompt |
-| `tetriwall/` | Privacy policy and terms of service for Tetriwall |
+| `img/` | Self-hosted icons (itch.io logo from Simple Icons, CC0) |
+| `tetriwall/` | Privacy policy and terms of service for Tetriwall (no longer linked) |
 
-A command is an entry of `commandsEnum` with a `cmd` function. Entries with `listable: true` and a `description` appear in `help`.
+A command is an entry of `commandsEnum` with a `cmd` function. The first word typed picks the command and the remaining words are passed to `cmd` as an array of arguments. Entries with `listable: true` and a `description` appear in `help`; Tab completes those and the ones marked `completable: true`. Anything else is a hidden command (the easter eggs live at the end of the file).
+
+The projects in progress are listed by command name in `activeprojects.names`.
 
 ## Branching model
 

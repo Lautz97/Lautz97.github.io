@@ -137,6 +137,10 @@ p {
         animation: none;
     }
 
+    .fetch-logo {
+        display: none;
+    }
+
     p:has(> .ascii) {
         font-size: calc((100vw - 32px) / 48);
     }
@@ -170,6 +174,46 @@ p {
     text-shadow: 0 0 5px #73ABAD;
 }
 
+/* icons sit on the text line, same size everywhere */
+#terminal img {
+    height: 1.4em;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+.headline {
+    color: #73ABAD;
+    text-shadow: 0 0 5px #73ABAD;
+    letter-spacing: 0.1em;
+}
+
+/* whoislautz card */
+.fetch-logo {
+    white-space: pre;
+}
+
+.fetch-key {
+    display: inline-block;
+    width: 10ch;
+    color: #73ABAD;
+    font-weight: bold;
+}
+
+/* long values wrap under themselves, not under the key */
+.fetch-value {
+    display: inline-block;
+    max-width: calc(100% - 10ch);
+    vertical-align: top;
+}
+
+.swatch {
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    vertical-align: middle;
+}
+
 .creditsText {
     font-size: 60%;
 }
@@ -198,4 +242,48 @@ a:hover {
 
 a:focus {
     outline: 0;
+}
+/* CRT look: scanlines and vignette over the page, a soft phosphor glow on the text */
+body {
+    text-shadow: 0 0 2px currentColor;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    background:
+        repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 1px, transparent 1px, transparent 3px),
+        radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+    animation: flicker 6s infinite;
+}
+
+@keyframes flicker {
+    0%, 96%, 100% {
+        opacity: 1;
+    }
+
+    97% {
+        opacity: 0.85;
+    }
+
+    98% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0.9;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::after,
+    p,
+    .cursor,
+    #liner {
+        animation: none;
+        opacity: 1;
+    }
 }
