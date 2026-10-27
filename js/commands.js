@@ -24,9 +24,9 @@ const commandsEnum = {
 
             Object.keys(commandsEnum).sort().forEach(k => {
                 if (commandsEnum[k].listable) {
-                    let name = k.padEnd(18)
+                    let name = k.padEnd(12)
                     let desc = commandsEnum[k].description
-                    message.push(`<span><pre style="display:inline; font-size:125%"><span class="command">${name}</span>${desc}</pre></span>`)
+                    message.push(`<span><pre class="help-row"><span class="command">${name}</span>${desc}</pre></span>`)
                 }
             });
 
@@ -96,14 +96,14 @@ const commandsEnum = {
             let banner = [
                 "<br>",
                 //https://patorjk.com/software/taag/#p=display&f=3D-ASCII&t=Lautz
-                '<span>   ___       ________  ___  ___  _________  ________                         </span>',
-                '<span>  |\\  \\     |\\   __  \\|\\  \\|\\  \\|\\___   ___\\\\_____  \\            </span>',
-                '<span>  \\ \\  \\    \\ \\  \\|\\  \\ \\  \\\\\\  \\|___ \\  \\_|\\|___/  /|       </span>',
-                '<span>   \\ \\  \\    \\ \\   __  \\ \\  \\\\\\  \\   \\ \\  \\     /  / /         </span>',
-                '<span>    \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\\\  \\   \\ \\  \\   /  /_/__      </span>',
-                '<span>     \\ \\_______\\ \\__\\ \\__\\ \\_______\\   \\ \\__\\ |\\________\\      </span>',
-                '<span>      \\|_______|\\|__|\\|__|\\|_______|    \\|__|  \\|_______|              </span>',
-                '<span>                                                                             </span>',
+                '<span class="ascii">   ___       ________  ___  ___  _________  ________                         </span>',
+                '<span class="ascii">  |\\  \\     |\\   __  \\|\\  \\|\\  \\|\\___   ___\\\\_____  \\            </span>',
+                '<span class="ascii">  \\ \\  \\    \\ \\  \\|\\  \\ \\  \\\\\\  \\|___ \\  \\_|\\|___/  /|       </span>',
+                '<span class="ascii">   \\ \\  \\    \\ \\   __  \\ \\  \\\\\\  \\   \\ \\  \\     /  / /         </span>',
+                '<span class="ascii">    \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\\\  \\   \\ \\  \\   /  /_/__      </span>',
+                '<span class="ascii">     \\ \\_______\\ \\__\\ \\__\\ \\_______\\   \\ \\__\\ |\\________\\      </span>',
+                '<span class="ascii">      \\|_______|\\|__|\\|__|\\|_______|    \\|__|  \\|_______|              </span>',
+                '<span class="ascii">                                                                             </span>',
                 '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
                 "<a href=\"https://icons8.it/\" class=\"creditsText colorlink\" >Icons by Icons8.</a>",
