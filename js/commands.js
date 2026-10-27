@@ -15,9 +15,18 @@ const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mai
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png" alt=""/>'
 
+const protocolBreachItch = 'https://lautz97.itch.io/protocol-breach'
+const protocolBreachBeta = `${email}?subject=${encodeURIComponent("Protocol Breach closed beta")}`
+
 // a titled block of lines, omitted entirely when there is nothing to list
 function section(title, lines) {
     return lines.length ? [title, "<br>", ...lines, "<br>"] : []
+}
+
+// ASCII progress bar, e.g. [##########----------] 50%
+function progressBar(percent, width = 20) {
+    let filled = Math.round(width * percent / 100)
+    return `[${"#".repeat(filled)}${"-".repeat(width - filled)}] ${percent}%`
 }
 
 const commandsEnum = {
@@ -248,12 +257,35 @@ const commandsEnum = {
         listable: false
     },
 
+    protocolbreach: {
+        cmd: function () {
+            loopLines([...commandsEnum.protocolbreach.textArray(), "<br>"], "", 90)
+        },
+        summary: `<span class="margin"><span class="command">protocolbreach</span> <span class="color2">- cyberpunk tactical infiltration roguelite</span></span>`,
+        textArray: () => [
+            "<br>",
+            `<span class="colorlink">Protocol Breach</span>`,
+            `<span class="color2 margin">Real-time cyberpunk infiltration with tactical pause, roguelite.</span>`,
+            `<span class="color2 margin">Jack into a corporate network, breach its nodes and complete the contract before the trace finds you.</span>`,
+            "<br>",
+            `<span class="margin"><span class="color2">Status:  </span>${progressBar(50)} in development, closed beta running</span>`,
+            `<span class="margin"><span class="color2">Tech:    </span>Godot 4.6, GDScript</span>`,
+            `<span class="margin"><span class="color2">Updated: </span>2026-10-24</span>`,
+            "<br>",
+            `<span class="color2 margin"><a href='${protocolBreachBeta}' target="_blank" rel="noopener noreferrer">${emailIcon}Want to join the closed beta? Send me an email</a></span>`,
+            `<span class="color2 margin"><a href='${protocolBreachItch}' target="_blank" rel="noopener noreferrer">Follow it on itch.io</a></span>`,
+        ],
+        listable: false
+    },
+
     activeprojects: {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        // add the text of the projects in progress here; the section is hidden while empty
-        textArray: () => [],
+        // one clickable summary per project in progress; the section is hidden while empty
+        textArray: () => [
+            commandsEnum.protocolbreach.summary,
+        ],
         listable: false
     },
 

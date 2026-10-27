@@ -141,6 +141,12 @@ p {
         font-size: calc((100vw - 32px) / 48);
     }
 
+    /* keep wrapped lines of indented spans aligned with their first line */
+    span.margin {
+        display: inline-block;
+        max-width: calc(100% - 20px);
+    }
+
     .help-row {
         font-size: 100%;
         white-space: pre-wrap;
