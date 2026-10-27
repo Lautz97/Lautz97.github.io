@@ -68,16 +68,42 @@ const commandsEnum = {
             loopLines([...commandsEnum.whoislautz.textArray(),], "", 80)
         },
         listable: true,
+        // neofetch-style card: ASCII logo on the left, key/value pairs on the right
+        card: () => {
+            const logo = [
+                " .--------------. ",
+                " | .----------. | ",
+                " | | &gt;_       | | ",
+                " | | lautz97  | | ",
+                " | |          | | ",
+                " | '----------' | ",
+                " '-----.  .-----' ",
+                "   ____|__|____   ",
+                "  '------------'  ",
+            ]
+            const field = (key, value) => `<span class="fetch-key">${key}</span><span class="fetch-value color2">${value}</span>`
+            const projects = commandsEnum.activeprojects.names
+            const swatches = ["#519975", "#73ABAD", "#60db97", "#B89076", "#9C8394", "#DCDCCC"]
+                .map(c => `<span class="swatch" style="background:${c}"></span>`).join("")
+            const info = [
+                `<span class="headline">lautz97</span><span class="color2">@</span><span class="headline">github.io</span>`,
+                `<span class="color2">-----------------</span>`,
+                field("Name", "Davide Lauterio"),
+                field("Role", "Security Engineer"),
+                field("Also", "Game developer"),
+                field("Degree", "M.Sc. Computer and Systems Engineering"),
+                field("&nbsp;", "B.Sc. Information Engineering"),
+                projects.length
+                    ? `<span class="fetch-key">Project</span><span class="fetch-value">` + projects.map(n => `<span class="command">${n}</span>`).join(", ") + "</span>"
+                    : field("Project", "nothing public right now"),
+                swatches,
+            ]
+            return logo.map((line, i) => `<span class="fetch-logo">${line}  </span>${info[i] || ""}`)
+        },
         textArray: () => [
             "<br>",
-            "<span class='color2'>Davide <span class='command'>Lautz97</span> Lauterio</span>",
+            ...commandsEnum.whoislautz.card(),
             "<br>",
-            "<span class='color2'>Bachelor's degree in Information Engineering.</span>",
-            "<span class='color2'>Master's degree in Computer and Systems Engineering.</span>",
-            "<span class='color2'>Currently working as a Security Engineer.</span>",
-            "<span class='color2'>Game developer.</span>",
-            "<br>",
-            ...section("<span class='color2'>At the moment working on: </span>", commandsEnum.activeprojects.textArray()),
             "<span class='color2'>If you want to support me: </span>",
             ...commandsEnum.support.textArray(),
             "<span class='color2'>If I got you interested, you can contact me for more information</span>",
@@ -279,10 +305,9 @@ const commandsEnum = {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        // one clickable summary per project in progress; the section is hidden while empty
-        textArray: () => [
-            commandsEnum.protocolbreach.summary,
-        ],
+        // commands of the projects in progress; the section is hidden while empty
+        names: ["protocolbreach"],
+        textArray: () => commandsEnum.activeprojects.names.map(n => commandsEnum[n].summary),
         listable: false
     },
 
