@@ -15,9 +15,14 @@ const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mai
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
 const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
 
+// a titled block of lines, omitted entirely when there is nothing to list
+function section(title, lines) {
+    return lines.length ? [title, "<br>", ...lines, "<br>"] : []
+}
+
 const commandsEnum = {
     help: {
-        description: "You have just typed this. Have you already forget what it does?",
+        description: "You have just typed this. Have you already forgotten what it does?",
         cmd: function () {
             let message = []
             message.push("<br>")
@@ -37,15 +42,15 @@ const commandsEnum = {
     },
 
     whoami: {
-        description: "Informations about the guest.",
+        description: "Information about the guest.",
         cmd: function () {
-            addLine("<span>Nice philosofical question.</span>", "error margin", 2);
+            addLine("<span>Nice philosophical question.</span>", "error margin", 2);
         },
         listable: true
     },
 
     whoislautz: {
-        description: "Informations about the author.",
+        description: "Information about the author.",
         cmd: function () {
             loopLines([...commandsEnum.whoislautz.textArray(),], "", 80)
         },
@@ -54,16 +59,14 @@ const commandsEnum = {
             "<br>",
             "<span class='color2'>Davide <span class='command'>Lautz97</span> Lauterio</span>",
             "<br>",
-            "<span class='color2'>Graduate in Engineering of Informations (bachelor's degree).</span>",
-            "<span class='color2'>Student of Computer and Systems Engineering (master's degree).</span>",
+            "<span class='color2'>Bachelor's degree in Information Engineering.</span>",
+            "<span class='color2'>Master's student in Computer and Systems Engineering.</span>",
             "<span class='color2'>Game developer.</span>",
             "<br>",
-            "<span class='color2'>At the moment working on: </span>",
-            "<br>",
-            ...commandsEnum.activeprojects.textArray(),
+            ...section("<span class='color2'>At the moment working on: </span>", commandsEnum.activeprojects.textArray()),
             "<span>If you want to support me: </span>",
             ...commandsEnum.support.textArray(),
-            "<span>If I got you interested, you can contact me for more informations</span>",
+            "<span>If I got you interested, you can contact me for more information</span>",
             ...commandsEnum.social.textArray(),
         ]
     },
@@ -139,7 +142,7 @@ const commandsEnum = {
     },
 
     social: {
-        description: "Contact informations and social networks",
+        description: "Contact information and social networks",
         cmd: function () {
             loopLines([...commandsEnum.social.textArray()], "", 90)
         },
@@ -147,7 +150,7 @@ const commandsEnum = {
         textArray: () => [
             "<br>",
             `<span class="color2 margin"><a href='${email}' target="_blank" rel="noopener noreferrer">${emailIcon}Send me an email</a></span>`,
-            `<span class="color2 margin"><a href='${telegram}' target="_blank" rel="noopener noreferrer">${telegramIcon}Reach to me via Telegram</a></span>`,
+            `<span class="color2 margin"><a href='${telegram}' target="_blank" rel="noopener noreferrer">${telegramIcon}Reach me on Telegram</a></span>`,
             `<span class="color2 margin"><a href='${mailingListForm}' target="_blank" rel="noopener noreferrer">${mailingListIcon}or send me your mail address to receive updates on my projects.</a></span>`,
             `<span class="color2 margin"><a href='${linkedin}' target="_blank" rel="noopener noreferrer">${linkedinIcon}... or if you really want to, on LinkedIn</a></span>`,
             "<br>",
@@ -155,7 +158,7 @@ const commandsEnum = {
     },
 
     support: {
-        description: "Offer me a coffe!",
+        description: "Buy me a coffee!",
         cmd: function () {
             addLine("Opening ko-fi &lt;3 Thanks bud!", "color2 margin", 80);
             window.open(kofi, '_blank', 'noopener,noreferrer')
@@ -163,7 +166,7 @@ const commandsEnum = {
         listable: true,
         textArray: () => [
             "<br>",
-            `<span class="colorlink">Offer me a coffe!</span>`,
+            `<span class="colorlink">Buy me a coffee!</span>`,
             `<span class="color2 margin"><a href='${kofi}' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
             "<br>",
         ],
@@ -175,15 +178,9 @@ const commandsEnum = {
             loopLines([...commandsEnum.projects.textArray(), "<br>"], "", 90)
         },
         textArray: () => [
-            `<span class="color2">Projects actually in progress: </span>`,
-            ...commandsEnum.activeprojects.textArray(),
-            "<br/>",
-            `<span class="color2">Completed or Stopped projects: </span>`,
-            ...commandsEnum.completedprojects.textArray(),
-            "<br/>",
-            `<span class="color2">Archived projects: </span>`,
-            ...commandsEnum.archivedprojects.textArray(),
-            "<br/>",
+            ...section(`<span class="color2">Projects currently in progress: </span>`, commandsEnum.activeprojects.textArray()),
+            ...section(`<span class="color2">Completed or paused projects: </span>`, commandsEnum.completedprojects.textArray()),
+            ...section(`<span class="color2">Archived projects: </span>`, commandsEnum.archivedprojects.textArray()),
         ],
         listable: true
     },
@@ -209,11 +206,11 @@ const commandsEnum = {
             loopLines([...commandsEnum.tetriwallislive.textArray()], "", 90)
         },
         textArray: () => [
-            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorlink\" target=\"_blank\" >" +
+            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorlink\" target=\"_blank\" rel=\"noopener noreferrer\">" +
             "TETRIWALL IS NOW LIVE<br/>" +
             "DOWNLOAD IT NOW IN GOOGLE PLAY STORE!"
             + "</a> ",
-            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorlink\" target=\"_blank\" >" +
+            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorlink\" target=\"_blank\" rel=\"noopener noreferrer\">" +
             "<br/>" +
             "OR DOWNLOAD IT FOR FREE ON ITCH.IO!"
             + "</a> ",
@@ -254,9 +251,8 @@ const commandsEnum = {
         cmd: function () {
             commandsEnum.error.cmd()
         },
-        textArray: () => [
-            "something new is going to be here soon..."
-        ],
+        // add the text of the projects in progress here; the section is hidden while empty
+        textArray: () => [],
         listable: false
     },
 
