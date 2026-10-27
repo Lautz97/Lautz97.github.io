@@ -232,8 +232,6 @@ const commandsEnum = {
             `<span class="color2 margin">Abandoned for lack of time: the last version is still available on itch.io.</span>`,
             `<span class="color2 margin"><a href='https://lautz97.itch.io/tetriwall' target="_blank" rel="noopener noreferrer">${itchIcon}Download it for free on itch.io</a></span>`,
             `<span class="color2 margin"><a href='https://github.com/Lautz97/TetriWall' target="_blank" rel="noopener noreferrer">${githubIcon}Open on GitHub</a></span>`,
-            `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-privacy-policy.html' target="_blank" rel="noopener noreferrer">Read the privacy policy</a></span>`,
-            `<span class="color2 margin creditsText"><a href='/tetriwall/tetriwall-terms-of-service.html' target="_blank" rel="noopener noreferrer">Read the terms of service</a></span>`,
         ],
         listable: false
     },
