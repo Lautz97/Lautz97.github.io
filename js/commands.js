@@ -1,19 +1,19 @@
-const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png"/>`
+const githubIcon = `<img src="https://img.icons8.com/stickers/25/null/github.png" alt=""/>`
 
 const kofi = 'https://ko-fi.com/lautz97'
-const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png"/>`
+const kofiIcon = `<img src="https://img.icons8.com/clouds/50/null/ko-fi.png" alt="Ko-fi"/>`
 
 const linkedin = "https://www.linkedin.com/in/lautz97"
-const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png"/>'
+const linkedinIcon = '<img src="https://img.icons8.com/color/50/null/linkedin.png" alt=""/>'
 
 const telegram = 'https://t.me/lautz97'
-const telegramIcon = '<img src="https://img.icons8.com/color/50/null/telegram-app--v1.png"/>'
+const telegramIcon = '<img src="https://img.icons8.com/color/50/null/telegram-app--v1.png" alt=""/>'
 
 const email = 'mailto:davide.lauterio@gmail.com'
-const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mail.png"/>'
+const emailIcon = '<img src="https://img.icons8.com/plasticine/50/null/apple-mail.png" alt=""/>'
 
 const mailingListForm = 'https://forms.gle/4aj8D76gMXLKKAdKA'
-const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png"/>'
+const mailingListIcon = '<img src="https://img.icons8.com/doodle/50/null/newsletter.png" alt=""/>'
 
 // a titled block of lines, omitted entirely when there is nothing to list
 function section(title, lines) {
