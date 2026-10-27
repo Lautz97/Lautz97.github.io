@@ -22,16 +22,11 @@ const commandsEnum = {
             let message = []
             message.push("<br>")
 
-            let row = "", desc = ""
-
             Object.keys(commandsEnum).sort().forEach(k => {
-                if (eval(`commandsEnum.${k}.listable`)) {
-                    while (k.length < 18) {
-                        k += " "
-                    }
-                    desc = eval(`commandsEnum.${k}.description`)
-                    row = `<span><pre style="display:inline; font-size:125%"><span class="command">${k}</span>${desc}</pre></span>`
-                    message.push(row)
+                if (commandsEnum[k].listable) {
+                    let name = k.padEnd(18)
+                    let desc = commandsEnum[k].description
+                    message.push(`<span><pre style="display:inline; font-size:125%"><span class="command">${name}</span>${desc}</pre></span>`)
                 }
             });
 
@@ -98,7 +93,7 @@ const commandsEnum = {
     banner: {
         description: "Display website banner",
         cmd: function () {
-            banner = [
+            let banner = [
                 "<br>",
                 //https://patorjk.com/software/taag/#p=display&f=3D-ASCII&t=Lautz
                 '<span>   ___       ________  ___  ___  _________  ________                         </span>',
@@ -111,7 +106,7 @@ const commandsEnum = {
                 '<span>                                                                             </span>',
                 '<span class="color2"></span>',
                 "<span class=\"color2\">For a list of available commands, ask for </span> <span class=\"command\">help</span><span class=\"color2\">.</span>",
-                "<a href=\"https://icons8.it/\" class=\"creditsText colorLink\" >Icons by Icons8.</a>",
+                "<a href=\"https://icons8.it/\" class=\"creditsText colorlink\" >Icons by Icons8.</a>",
                 "<br>",
                 "<br>",
                 ...commandsEnum.tetriwallislive.textArray(),
@@ -134,7 +129,7 @@ const commandsEnum = {
                         addLine("CLOSING...", "command margin", 80);
                         setTimeout(() => {
                             window.close()
-                            addLine("Oh...wait...I cannot close windows that were not open by a script like me :(", "command margin", 80 * commands.length + 50);
+                            addLine("Oh...wait...I cannot close windows that were not open by a script like me :(", "command margin", 80);
                         }, 250)
                     }, 500)
                 }, 500)
@@ -162,14 +157,14 @@ const commandsEnum = {
     support: {
         description: "Offer me a coffe!",
         cmd: function () {
-            addLine("Opening ko-fi <3 Thanks bud!", "color2 margin", 80);
-            window.open('https://ko-fi.com/lautz97', '_blank').focus()
+            addLine("Opening ko-fi &lt;3 Thanks bud!", "color2 margin", 80);
+            window.open(kofi, '_blank', 'noopener,noreferrer')
         },
         listable: true,
         textArray: () => [
             "<br>",
             `<span class="colorlink">Offer me a coffe!</span>`,
-            `<span class="color2 margin"><a href='https://ko-fi.com/lautz97' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
+            `<span class="color2 margin"><a href='${kofi}' target="_blank" rel="noopener noreferrer">${kofiIcon}</a></span>`,
             "<br>",
         ],
     },
@@ -193,11 +188,6 @@ const commandsEnum = {
         listable: true
     },
 
-    blank: {
-        description: "blank",
-        cmd: function () { console.log("do nothing"); },
-        listable: false
-    },
     error: {
         description: "error",
         cmd: function () {
@@ -219,11 +209,11 @@ const commandsEnum = {
             loopLines([...commandsEnum.tetriwallislive.textArray()], "", 90)
         },
         textArray: () => [
-            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorLink\" target=\"_blank\" >" +
+            "<a href=\"https://play.google.com/store/apps/details?id=com.ProjectLautz.TetriWall\" class=\"command colorlink\" target=\"_blank\" >" +
             "TETRIWALL IS NOW LIVE<br/>" +
             "DOWNLOAD IT NOW IN GOOGLE PLAY STORE!"
             + "</a> ",
-            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorLink\" target=\"_blank\" >" +
+            "<a href=\"https://lautz97.itch.io/tetriwall\" class=\"command colorlink\" target=\"_blank\" >" +
             "<br/>" +
             "OR DOWNLOAD IT FOR FREE ON ITCH.IO!"
             + "</a> ",

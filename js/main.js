@@ -17,51 +17,51 @@ setTimeout(function () {
 window.addEventListener("keyup", enterKey);
 
 //init
-textarea.value = "";
-command.innerHTML = textarea.value;
+setInput("");
+
+function setInput(value) {
+    textarea.value = value;
+    command.textContent = value;
+}
 
 function enterKey(e) {
-    if (e.keyCode == 27) {
-        document.location.reload(true);
+    if (e.key === "Escape") {
+        document.location.reload();
     }
-    if (e.keyCode == 13) {
+    if (e.key === "Enter") {
         SendCommand();
     }
-    if (e.keyCode == 38 && git != 0) {
+    if (e.key === "ArrowUp" && git != 0) {
         git -= 1;
-        textarea.value = commands[git];
-        command.innerHTML = textarea.value;
+        setInput(commands[git]);
     }
-    if (e.keyCode == 40 && git != commands.length) {
+    if (e.key === "ArrowDown" && git != commands.length) {
         git += 1;
-        if (commands[git] === undefined) {
-            textarea.value = "";
-        } else {
-            textarea.value = commands[git];
-        }
-        command.innerHTML = textarea.value;
+        setInput(commands[git] === undefined ? "" : commands[git]);
     }
 }
 
 function SendCommand() {
-    commands.push(command.innerHTML);
+    let input = nl2br(textarea.value).trim();
+    setInput("");
+    addLine(lineStart + escapeHtml(input), "no-animation", 0);
+    if (input === "") {
+        return;
+    }
+    commands.push(input);
     git = commands.length;
-    addLine(lineStart + command.innerHTML, "no-animation", 0);
-    commander(command.innerHTML.toLowerCase());
-    command.innerHTML = "";
-    textarea.value = "";
+    commander(input.toLowerCase());
 }
 
 function clickCommand(cmd) {
-    textarea.value = cmd;
-    command.innerHTML = textarea.value;
+    setInput(cmd);
     SendCommand();
     textarea.focus();
 }
 
 function commander(cmd) {
-    if (cmd in commandsEnum) {
-        eval(`commandsEnum.${cmd}.cmd()`)
+    if (Object.prototype.hasOwnProperty.call(commandsEnum, cmd)) {
+        commandsEnum[cmd].cmd()
     } else {
         commandsEnum.error.cmd()
     }
