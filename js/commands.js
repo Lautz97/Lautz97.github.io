@@ -47,6 +47,8 @@ const commandsEnum = {
             });
 
             message.push("<br>")
+            message.push(`<span class="creditsText">Tip: press Tab to autocomplete a command, arrows to browse the history.</span>`)
+            message.push("<br>")
             loopLines(message, "color2 margin", 80);
         },
         listable: true
@@ -224,6 +226,7 @@ const commandsEnum = {
     },
 
     tetriwall: {
+        completable: true,
         cmd: function () {
             loopLines([...commandsEnum.tetriwall.textArray()], "", 90)
         },
@@ -238,6 +241,7 @@ const commandsEnum = {
 
 
     guessit: {
+        completable: true,
         cmd: function () {
             loopLines([...commandsEnum.guessit.textArray()], "", 90)
         },
@@ -250,6 +254,7 @@ const commandsEnum = {
     },
 
     protocolbreach: {
+        completable: true,
         cmd: function () {
             loopLines([...commandsEnum.protocolbreach.textArray(), "<br>"], "", 90)
         },
